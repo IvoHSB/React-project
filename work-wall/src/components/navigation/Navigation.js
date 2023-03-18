@@ -9,11 +9,14 @@ export const Navigation = () => {
                 </button>
                 <div className="collapse navbar-collapse" id="navbarResponsive">
                     <ul className="navbar-nav text-uppercase ms-auto py-4 py-lg-0">
-                        <li className="nav-item"><a className="nav-link" href="#services">Services</a></li>
-                        <li className="nav-item"><a className="nav-link" href="#portfolio">Portfolio</a></li>
+                        <li className="nav-item"><a className="nav-link" href="#services">Home</a></li>
+                        <li className="nav-item"><a className="nav-link" href="#portfolio">All projects</a></li>
                         <li className="nav-item"><a className="nav-link" href="#about">About</a></li>
-                        <li className="nav-item"><a className="nav-link" href="#team">Team</a></li>
                         <li className="nav-item"><a className="nav-link" href="#contact">Contact</a></li>
+                        <li className="nav-item"><a className="nav-link" href="#contact">Profile</a></li>
+                        <li className="nav-item"><a className="nav-link" href="#contact">Login</a></li>
+                        <li className="nav-item"><a className="nav-link" href="#contact">Register</a></li>
+                        <li className="nav-item"><a className="nav-link" href="#contact">logout</a></li>
                     </ul>
                 </div>
             </div>
