@@ -1,13 +1,15 @@
 import { Navigation } from "./components/navigation/Navigation";
-import { Masthead } from "./components/homePage/Masthead";
+import { HomePage } from "./components/homePage/HmePage";
 import { Footer } from "./components/footer/Footer";
+import { Projects } from "./components/projectsPage/Projects";
 
 
 function App() {
   return (
     <>
       <Navigation />
-      <Masthead />
+      {/* <HomePage /> */}
+      <Projects />
       <Footer />
     </>
   );
