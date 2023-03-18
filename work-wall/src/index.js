@@ -1,13 +1,15 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
-import './index.css';
-import App from './App';
+import './styles.css';
 import reportWebVitals from './reportWebVitals';
+import { Masthead } from './components/homePage/Masthead';
+import { Navigation } from './components/navigation/Navigation';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
-    <App />
+    <Navigation />
+    <Masthead />
   </React.StrictMode>
 );
 
