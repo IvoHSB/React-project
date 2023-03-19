@@ -1,22 +1,24 @@
+import { Link } from 'react-router-dom';
+
 export const Navigation = () => {
     return (
         <nav className="navbar navbar-expand-lg navbar-dark fixed-top navbar-shrink" id="mainNav">
             <div className="container">
-                <a className="navbar-brand" href="#page-top"><img src="img/navbar-logo.svg" alt="..." /></a>
+                <Link className="navbar-brand" to="/"><img src="img/navbar-logo.svg" alt="..." /></Link>
                 <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
                     Menu
                     <i className="fas fa-bars ms-1"></i>
                 </button>
                 <div className="collapse navbar-collapse" id="navbarResponsive">
                     <ul className="navbar-nav text-uppercase ms-auto py-4 py-lg-0">
-                        <li className="nav-item"><a className="nav-link" href="#services">Home</a></li>
-                        <li className="nav-item"><a className="nav-link" href="#portfolio">All projects</a></li>
-                        <li className="nav-item"><a className="nav-link" href="#about">About</a></li>
-                        <li className="nav-item"><a className="nav-link" href="#contact">Contact</a></li>
-                        <li className="nav-item"><a className="nav-link" href="#contact">Profile</a></li>
-                        <li className="nav-item"><a className="nav-link" href="#contact">Login</a></li>
-                        <li className="nav-item"><a className="nav-link" href="#contact">Register</a></li>
-                        <li className="nav-item"><a className="nav-link" href="#contact">logout</a></li>
+                        <li className="nav-item"><Link className="nav-link" to="/">Home</Link></li>
+                        <li className="nav-item"><Link className="nav-link" to="/projects">All projects</Link></li>
+                        <li className="nav-item"><Link className="nav-link" to="/about">About</Link></li>
+                        <li className="nav-item"><Link className="nav-link" to="/contact">Contact</Link></li>
+                        <li className="nav-item"><Link className="nav-link" to="/prifile/:username">Profile</Link></li>
+                        <li className="nav-item"><Link className="nav-link" to="/login">Login</Link></li>
+                        <li className="nav-item"><Link className="nav-link" to="/register">Register</Link></li>
+                        <li className="nav-item"><Link className="nav-link" to="/logout">logout</Link></li>
                     </ul>
                 </div>
             </div>
