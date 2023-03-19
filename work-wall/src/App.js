@@ -9,6 +9,7 @@ import { Contact } from "./components/contactPage/Contact";
 import { Profile } from './components/profilePage/Profile';
 import { NotFound } from './components/404Page/404';
 import { Register } from './components/registerPage/Register';
+import { Login } from './components/loginPage/Login';
 
 function App() {
   return (
@@ -21,6 +22,7 @@ function App() {
         <Route path='/contact' element={<Contact />} />
         <Route path='/profile' element={<Profile />} />
         <Route path='/register' element={<Register />} />
+        <Route path='/login' element={<Login />} />
         <Route path='*' element={<NotFound />} />
       </Routes>
       <Footer />

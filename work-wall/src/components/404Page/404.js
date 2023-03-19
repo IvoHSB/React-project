@@ -2,7 +2,7 @@ import { Link } from "react-router-dom";
 
 export const NotFound = () => {
     return (
-        <div className="container d-flex justify-content-center align-items-center vh-100">
+        <div className="container d-flex justify-content-center align-items-center" style={{marginTop: "230px", marginBottom: "259px"}}>
             <div className="text-center">
                 <img src="https://dummyimage.com/200x200/000/fff" alt="Error" className="mb-3" />
                 <h1 className="mb-3">Oops! Page not found</h1>
