@@ -1,12 +1,27 @@
 import { Link } from "react-router-dom";
+import { login } from "../../services/authService";
 
 export const Login = () => {
+
+    const onSubmit = (e) => {
+        e.preventDefault();
+
+        const {
+            email,
+            password
+        } = Object.fromEntries(new FormData(e.target));
+
+        let resp = login(email, password)
+        .then(response => console.log(response))
+        
+    }
+
     return (
         <div className="container" style={{marginTop: '250px', marginBottom: '259px'}}>
             <h1 className="text-center my-5">Log In</h1>
             <div className="row justify-content-center">
                 <div className="col-md-6">
-                    <form action="#" method="POST">
+                    <form onSubmit={onSubmit}>
                         <div className="mb-3">
                             <label htmlFor="inputEmail" className="form-label">Email address</label>
                             <input type="email" className="form-control" id="inputEmail" name="email" required />
