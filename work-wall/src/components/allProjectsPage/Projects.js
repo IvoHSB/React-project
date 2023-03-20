@@ -1,3 +1,5 @@
+import { Link } from "react-router-dom";
+
 export const Projects = () => {
     return (
         <section className="page-section bg-light" id="portfolio">
@@ -10,12 +12,12 @@ export const Projects = () => {
                     <div className="col-lg-4 col-sm-6 mb-4">
                         {/* <!-- Portfolio item 1--> */}
                         <div className="portfolio-item">
-                            <a className="portfolio-link" data-bs-toggle="modal" href="#portfolioModal1">
+                            <Link className="portfolio-link" data-bs-toggle="modal" to="/projects/id">
                                 <div className="portfolio-hover">
                                     <div className="portfolio-hover-content"><i className="fas fa-plus fa-3x"></i></div>
                                 </div>
                                 <img className="img-fluid" src="img/portfolio/1.jpg" alt="..." />
-                            </a>
+                            </Link>
                             <div className="portfolio-caption">
                                 <div className="portfolio-caption-heading">Threads</div>
                                 <div className="portfolio-caption-subheading text-muted">Illustration</div>
