@@ -1,6 +1,6 @@
  let url = "http://localhost:3030/users";
 
-export const register =  (email, password) => {
+export const register = (email, password) => {
 
     let result = fetch(`${url}/register`, {
         method: "POST",
@@ -14,7 +14,7 @@ export const register =  (email, password) => {
     return result;
 }
 
-export const login =  (email, password) => {
+export const login = (email, password) => {
 
     let result = fetch(`${url}/login`, {
         method: "POST",
