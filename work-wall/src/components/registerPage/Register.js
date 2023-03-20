@@ -34,7 +34,7 @@ export const Register = () => {
             setErrorMessage("Username must be minimum 3 characters!");
         } else {
             setHaveError(false);
-            let resp = register(email, password)
+            register(email, password)
             .then(function(resp) {
                 if (resp.message) {
                     setHaveError(true);
