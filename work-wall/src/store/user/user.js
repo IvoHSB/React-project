@@ -11,7 +11,9 @@ export const userData = createSlice({
       webSite: null,
       aboutYou: null,
       skills: null,
-      photo: null
+      photo: null,
+      methodForChangeDetails: 'POST',
+      detailsId: null
     },
     reducers: {
       setBasedata: (state, action) => {
@@ -34,12 +36,17 @@ export const userData = createSlice({
         if (action.payload.aboutYou) {
           state.aboutYou = action.payload.aboutYou;
         }
-        if (action.payload.allSkill.length !== 0) {
+        console.log(action.payload.allSkill)
+        if (action.payload.allSkill) {
           state.skills = action.payload.allSkill;
         }
         if (action.payload.photo) {
           state.photo = action.payload.photo;
         }
+        state.detailsId = action.payload._id;
+      },
+      changeMethod: (state, action) => {
+        state.methodForChangeDetails = action.payload;
       }
       // decrement: (state) => {
       //   state.value -= 1
@@ -51,6 +58,6 @@ export const userData = createSlice({
   })
   
   // Action creators are generated for each case reducer function
-  export const { setBasedata, setDetailedData } = userData.actions;
+  export const { setBasedata, setDetailedData, changeMethod } = userData.actions;
   
   export default userData.reducer;

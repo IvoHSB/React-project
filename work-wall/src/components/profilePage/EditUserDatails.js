@@ -1,7 +1,7 @@
 import { useNavigate } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import { setDetailedData } from '../../store/user/user';
-import { editDetails } from "../../services/userService";
+import { setDetails, editDetails } from "../../services/userService";
 
 
 export const EditUserDetails = () => {
@@ -13,6 +13,8 @@ export const EditUserDetails = () => {
 
     const accessToken = useSelector((state) => state.user.accessToken);
     const _id = useSelector((state) => state.user._id);
+    const methodForChangeDetails = useSelector((state) => state.user.methodForChangeDetails);
+    const detailsId = useSelector((state) => state.user.detailsId);
 
     const onSubmit = (e) => {
         e.preventDefault();
@@ -27,11 +29,22 @@ export const EditUserDetails = () => {
 
         data.allSkill = availableSkils;
 
-        editDetails(data, accessToken)
-        .then(resp => 
-            dispatch(setDetailedData(resp)),
-            navigate(`/profile/${_id}`)
-        );
+        if (methodForChangeDetails === "POST") {
+            setDetails(data, accessToken)
+            .then(function (resp) {
+                    console.log(resp);
+                    dispatch(setDetailedData(resp));
+                    navigate(`/profile/${_id}`);
+            });
+        } else if (methodForChangeDetails === "PUT") {
+            editDetails(data, accessToken, detailsId)
+            .then(function (resp) {
+                console.log(resp);
+                dispatch(setDetailedData(resp));
+                navigate(`/profile/${_id}`);
+        });
+        }
+        
 
     }
 

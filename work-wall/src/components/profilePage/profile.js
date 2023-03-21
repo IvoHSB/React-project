@@ -1,8 +1,11 @@
 import { useNavigate } from "react-router-dom";
-import { useSelector } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
+import { changeMethod } from "../../store/user/user";
 
 export const Profile = () => {
     const navigate = useNavigate();
+    const dispatch = useDispatch();
+
     const _id = useSelector((state) => state.user._id);
 
     const username = useSelector((state) => state.user.username);
@@ -14,7 +17,8 @@ export const Profile = () => {
     const skills = useSelector((state) => state.user.skills);
 
     const editUserDetailsPage = () => {
-        navigate(`/edit-user-details/${_id}`)
+        dispatch(changeMethod("PUT"));
+        navigate(`/edit-user-details/${_id}`);
     }
 
     return (

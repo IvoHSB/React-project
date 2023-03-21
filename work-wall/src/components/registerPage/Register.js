@@ -2,7 +2,7 @@ import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { register } from "../../services/authService";
 import { useDispatch } from 'react-redux';
-import { setBasedata } from '../../store/user/user';
+import { setBasedata, changeMethod } from '../../store/user/user';
 
 export const Register = () => {
     const dispatch = useDispatch();
@@ -52,6 +52,7 @@ export const Register = () => {
                         accessToken: resp['accessToken']
                     }));
                     console.log(resp);
+                    dispatch(changeMethod("POST"));
                     navigate(`/edit-user-details/${resp['_id']}`)
                 }
             })
