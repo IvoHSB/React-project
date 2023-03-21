@@ -29,6 +29,6 @@ export const userData = createSlice({
   })
   
   // Action creators are generated for each case reducer function
-  export const { setBasedata } = counterSlice.actions;
+  export const { setBasedata } = userData.actions;
   
   export default userData.reducer;

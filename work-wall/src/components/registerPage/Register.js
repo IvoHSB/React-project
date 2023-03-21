@@ -11,14 +11,15 @@ export const Register = () => {
     const onSubmit = (e) => {
         e.preventDefault();
 
-        let regx = /^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/g;
-
         const {
             username,
             email,
             password,
             confirmPassword
         } = Object.fromEntries(new FormData(e.target));
+        
+        // validations
+        let regx = /^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/g;
 
         if (password !== confirmPassword) {
             setHaveError(true);
