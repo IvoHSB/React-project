@@ -8,6 +8,7 @@ import { ProjectDetails } from './components/projectDetailsPage/ProjectDetails';
 import { About } from "./components/aboutPage/About";
 import { Contact } from "./components/contactPage/Contact";
 import { Profile } from './components/profilePage/Profile';
+import { EditUserDetails } from './components/profilePage/EditUserDatails';
 import { NotFound } from './components/404Page/404';
 import { Register } from './components/registerPage/Register';
 import { Login } from './components/loginPage/Login';
@@ -23,6 +24,7 @@ function App() {
         <Route path='/about' element={<About />} />
         <Route path='/contact' element={<Contact />} />
         <Route path='/profile/:username' element={<Profile />} />
+        <Route path='/edit-user-details/:username' element={<EditUserDetails />} />
         <Route path='/register' element={<Register />} />
         <Route path='/login' element={<Login />} />
         <Route path='*' element={<NotFound />} />

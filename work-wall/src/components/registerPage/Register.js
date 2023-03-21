@@ -52,7 +52,7 @@ export const Register = () => {
                         accessToken: resp['accessToken']
                     }));
                     console.log(resp);
-                    navigate('/')
+                    navigate(`/edit-user-details/${username}`)
                 }
             })
         }
