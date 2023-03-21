@@ -2,7 +2,8 @@ import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { login } from "../../services/authService";
 import { useDispatch } from 'react-redux';
-import { setBasedata } from '../../store/user/user';
+import { setBasedata, setDetailedData } from '../../store/user/user';
+import { getProfileByUserId } from "../../services/userService";
 
 export const Login = () => {
     const navigate = useNavigate();
@@ -41,6 +42,8 @@ export const Login = () => {
                             _id: resp['_id'],
                             accessToken: resp['accessToken']
                         }));
+                        getProfileByUserId(resp['_id'])
+                        .then(profileResp => dispatch(setDetailedData(profileResp)))
                         console.log(resp);
                         navigate('/')
                     }

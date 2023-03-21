@@ -2,7 +2,7 @@ import { Link } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 
 export const Navigation = () => {
-    const _id = useSelector((state) => state.user._id)
+    const _id = useSelector((state) => state.user.detailsId)
 
     return (
         <nav className="navbar navbar-expand-lg navbar-dark fixed-top navbar-shrink" id="mainNav">

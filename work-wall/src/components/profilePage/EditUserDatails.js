@@ -13,6 +13,8 @@ export const EditUserDetails = () => {
 
     const accessToken = useSelector((state) => state.user.accessToken);
     const _id = useSelector((state) => state.user._id);
+    const username = useSelector((state) => state.user.username);
+    const email = useSelector((state) => state.user.email);
     const methodForChangeDetails = useSelector((state) => state.user.methodForChangeDetails);
     const detailsId = useSelector((state) => state.user.detailsId);
     const photo = useSelector((state) => state.user.photo);
@@ -35,20 +37,22 @@ export const EditUserDetails = () => {
         });
 
         data.allSkill = availableSkils;
+        data.username = username;
+        data.email = email;
 
         if (methodForChangeDetails === "POST") {
             setDetails(data, accessToken)
                 .then(function (resp) {
                     console.log(resp);
                     dispatch(setDetailedData(resp));
-                    navigate(`/profile/${_id}`);
+                    navigate(`/profile/${resp._id}`);
                 });
         } else if (methodForChangeDetails === "PUT") {
             editDetails(data, accessToken, detailsId)
                 .then(function (resp) {
                     console.log(resp);
                     dispatch(setDetailedData(resp));
-                    navigate(`/profile/${_id}`);
+                    navigate(`/profile/${resp._id}`);
                 });
         }
 

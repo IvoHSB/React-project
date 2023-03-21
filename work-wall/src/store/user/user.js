@@ -14,7 +14,7 @@ export const userData = createSlice({
       photo: null,
       otherSkill: null,
       methodForChangeDetails: 'POST',
-      detailsId: null
+      detailsId: null,
     },
     reducers: {
       setBasedata: (state, action) => {

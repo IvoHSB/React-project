@@ -29,3 +29,27 @@ export const editDetails = (data, accessToken, id) => {
 
     return result;
 }
+
+export const getProfile = (id) => {
+    let result = fetch(`${url}/userDetails/${id}`, {
+        method: "GET",
+        headers: {
+            'Content-Type': 'application/json',
+        },
+    })
+    .then((resp) => resp.json())
+
+    return result;
+}
+
+export const getProfileByUserId = (id) => {
+    let result = fetch(`${url}/userDetails?_ownerId=${id}`, {
+        method: "GET",
+        headers: {
+            'Content-Type': 'application/json',
+        },
+    })
+    .then((resp) => resp.json())
+
+    return result;
+}

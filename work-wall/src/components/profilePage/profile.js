@@ -1,21 +1,34 @@
-import { useNavigate } from "react-router-dom";
+import { useEffect } from "react";
+import { useNavigate, useLocation  } from "react-router-dom";
 import { useSelector, useDispatch } from 'react-redux';
 import { changeMethod } from "../../store/user/user";
+import { setProfileData } from "../../store/profilePage/profile";
+import { getProfile } from "../../services/userService";
 
 export const Profile = () => {
     const navigate = useNavigate();
     const dispatch = useDispatch();
+    const location = useLocation();
+    const profileId = location.pathname.split('/profile/').join('');
+
+    useEffect(() => {
+        getProfile(profileId)
+        .then(function(resp) {
+             dispatch(setProfileData(resp))
+        })
+    }, [])
 
     const _id = useSelector((state) => state.user._id);
+    const ownerProfileId = useSelector((state) => state.user.ownerId);
 
-    const username = useSelector((state) => state.user.username);
-    const email = useSelector((state) => state.user.email);
-    const phone = useSelector((state) => state.user.phoneNumber);
-    const webSite = useSelector((state) => state.user.webSite);
-    const aboutYou = useSelector((state) => state.user.aboutYou);
-    const photo = useSelector((state) => state.user.photo);
-    const skills = useSelector((state) => state.user.skills);
-    const otherSkill = useSelector((state) => state.user.otherSkill);
+    const username = useSelector((state) => state.profile.username);
+    const email = useSelector((state) => state.profile.email);
+    const phone = useSelector((state) => state.profile.phoneNumber);
+    const webSite = useSelector((state) => state.profile.webSite);
+    const aboutYou = useSelector((state) => state.profile.aboutYou);
+    const photo = useSelector((state) => state.profile.photo);
+    const skills = useSelector((state) => state.profile.skills);
+    const otherSkill = useSelector((state) => state.profile.otherSkill);
 
     const editUserDetailsPage = () => {
         dispatch(changeMethod("PUT"));
@@ -31,7 +44,7 @@ export const Profile = () => {
                         {!photo && <img src="https://via.placeholder.com/300x300" alt="Profile Picture" className="card-img-top" />}
                         <div className="card-body">
                             <h5 className="card-title">{username}</h5>
-                            <button type="button" style={{float: 'right'}} className="btn btn-primary" onClick={editUserDetailsPage}>change info</button>
+                            {_id === ownerProfileId && <button type="button" style={{float: 'right'}} className="btn btn-primary" onClick={editUserDetailsPage}>change info</button>}
                         </div>
                         <ul className="list-group list-group-flush">
                             <li className="list-group-item"><strong>Email:</strong> {email}</li>
