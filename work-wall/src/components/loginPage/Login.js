@@ -1,8 +1,12 @@
 import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { login } from "../../services/authService";
+import { useDispatch } from 'react-redux';
+import { setBasedata } from '../../store/user/user';
 
 export const Login = () => {
+    const dispatch = useDispatch();
+
     let [errorMessage, setErrorMessage] = useState(null);
     let [haveError, setHaveError] = useState(false);
 
@@ -31,6 +35,12 @@ export const Login = () => {
                         setHaveError(true);
                         setErrorMessage(resp.message + '!');
                     } else {
+                        dispatch(setBasedata({
+                            username: resp['username'],
+                            email: resp['email'],
+                            _id: resp['_id'],
+                            accessToken: resp['accessToken']
+                        }));
                         console.log(resp);
                         navigate('/')
                     }

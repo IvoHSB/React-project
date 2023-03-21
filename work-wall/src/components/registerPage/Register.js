@@ -1,8 +1,12 @@
 import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { register } from "../../services/authService";
+import { useDispatch } from 'react-redux';
+import { setBasedata } from '../../store/user/user';
 
 export const Register = () => {
+    const dispatch = useDispatch();
+
     let [errorMessage, setErrorMessage] = useState(null);
     let [haveError, setHaveError] = useState(false);
 
@@ -35,12 +39,18 @@ export const Register = () => {
             setErrorMessage("Username must be minimum 3 characters!");
         } else {
             setHaveError(false);
-            register(email, password)
+            register(email, password, username)
             .then(function(resp) {
                 if (resp.message) {
                     setHaveError(true);
                     setErrorMessage(resp.message + '!');
                 } else {
+                    dispatch(setBasedata({
+                        username: resp['username'],
+                        email: resp['email'],
+                        _id: resp['_id'],
+                        accessToken: resp['accessToken']
+                    }));
                     console.log(resp);
                     navigate('/')
                 }
