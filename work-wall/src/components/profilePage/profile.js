@@ -1,4 +1,9 @@
+import { useSelector } from 'react-redux';
+
 export const Profile = () => {
+    const username = useSelector((state) => state.user.username)
+    const email = useSelector((state) => state.user.email)
+
     return (
         <main className="container mt-5" style={{paddingTop: "100px"}}>
             <div className="row">
@@ -6,11 +11,10 @@ export const Profile = () => {
                     <div className="card">
                         <img src="https://via.placeholder.com/300x300" alt="Profile Picture" className="card-img-top" />
                         <div className="card-body">
-                            <h5 className="card-title">Web Developer</h5>
-                            <p className="card-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed ultrices, nisi vel aliquam tristique, nulla leo bibendum nunc, at pulvinar arcu enim non lectus.</p>
+                            <h5 className="card-title">{username}</h5>
                         </div>
                         <ul className="list-group list-group-flush">
-                            <li className="list-group-item"><strong>Email:</strong> john.doe@gmail.com</li>
+                            <li className="list-group-item"><strong>Email:</strong> {email}</li>
                             <li className="list-group-item"><strong>Phone:</strong> (555) 555-5555</li>
                             <li className="list-group-item"><strong>Website:</strong> www.johndoe.com</li>
                         </ul>

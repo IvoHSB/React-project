@@ -6,7 +6,12 @@ export const userData = createSlice({
       username: null, // da naprawq po registraciq i login da se postwa i username i da se poluchava
       email: null,
       _id: null,
-      accessToken: null
+      accessToken: null,
+      phoneNumber: null,
+      webSite: null,
+      aboutUser: null,
+      skils: null,
+      photo: null
     },
     reducers: {
       setBasedata: (state, action) => {
@@ -19,6 +24,23 @@ export const userData = createSlice({
         state._id = action.payload._id;
         state.accessToken = action.payload.accessToken
       },
+      setDetailedData: (state, action) => {
+        if (action.payload.phoneNumber) {
+          state.phoneNumber = action.payload.phoneNumber;
+        }
+        if (action.payload.webSite) {
+          state.phoneNumber = action.payload.webSite;
+        }
+        if (action.payload.aboutUser) {
+          state.phoneNumber = action.payload.aboutUser;
+        }
+        if (action.payload.skils) {
+          state.phoneNumber = action.payload.skils;
+        }
+        if (action.payload.photo) {
+          state.phoneNumber = action.payload.photo;
+        }
+      }
       // decrement: (state) => {
       //   state.value -= 1
       // },
