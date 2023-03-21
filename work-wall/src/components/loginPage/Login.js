@@ -5,12 +5,12 @@ import { useDispatch } from 'react-redux';
 import { setBasedata } from '../../store/user/user';
 
 export const Login = () => {
+    const navigate = useNavigate();
     const dispatch = useDispatch();
 
     let [errorMessage, setErrorMessage] = useState(null);
     let [haveError, setHaveError] = useState(false);
 
-    let navigate = useNavigate();
     let regx = /^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/g;
 
     const onSubmit = (e) => {
@@ -29,7 +29,7 @@ export const Login = () => {
             setErrorMessage("Login or password don't match!");
         } else {
             setHaveError(false);
-            let resp = login(email, password)
+            login(email, password)
                 .then(function (resp) {
                     if (resp.message) {
                         setHaveError(true);
@@ -46,9 +46,6 @@ export const Login = () => {
                     }
                 })
         }
-
-        let resp = login(email, password)
-            .then(response => console.log(response))
 
     }
 

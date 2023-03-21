@@ -23,8 +23,8 @@ function App() {
         <Route path='/projects' element={<Projects />} />
         <Route path='/about' element={<About />} />
         <Route path='/contact' element={<Contact />} />
-        <Route path='/profile/:username' element={<Profile />} />
-        <Route path='/edit-user-details/:username' element={<EditUserDetails />} />
+        <Route path='/profile/:id' element={<Profile />} />
+        <Route path='/edit-user-details/:id' element={<EditUserDetails />} />
         <Route path='/register' element={<Register />} />
         <Route path='/login' element={<Login />} />
         <Route path='*' element={<NotFound />} />

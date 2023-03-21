@@ -1,43 +1,55 @@
+import { useNavigate } from "react-router-dom";
 import { useSelector } from 'react-redux';
 
 export const Profile = () => {
-    const username = useSelector((state) => state.user.username)
-    const email = useSelector((state) => state.user.email)
+    const navigate = useNavigate();
+    const _id = useSelector((state) => state.user._id);
+
+    const username = useSelector((state) => state.user.username);
+    const email = useSelector((state) => state.user.email);
+    const phone = useSelector((state) => state.user.phoneNumber);
+    const webSite = useSelector((state) => state.user.webSite);
+    const aboutYou = useSelector((state) => state.user.aboutYou);
+    const photo = useSelector((state) => state.user.photo);
+    const skills = useSelector((state) => state.user.skills);
+
+    const editUserDetailsPage = () => {
+        navigate(`/edit-user-details/${_id}`)
+    }
 
     return (
-        <main className="container mt-5" style={{paddingTop: "100px"}}>
+        <main className="container mt-5" style={{paddingTop: "100px", marginBottom: "200px"}}>
             <div className="row">
                 <div className="col-md-4">
                     <div className="card">
-                        <img src="https://via.placeholder.com/300x300" alt="Profile Picture" className="card-img-top" />
+                        {photo && <img src={photo} alt="Profile Picture" className="card-img-top" />}
+                        {!photo && <img src="https://via.placeholder.com/300x300" alt="Profile Picture" className="card-img-top" />}
                         <div className="card-body">
                             <h5 className="card-title">{username}</h5>
+                            <button type="button" style={{float: 'right'}} className="btn btn-primary" onClick={editUserDetailsPage}>change info</button>
                         </div>
                         <ul className="list-group list-group-flush">
                             <li className="list-group-item"><strong>Email:</strong> {email}</li>
-                            <li className="list-group-item"><strong>Phone:</strong> (555) 555-5555</li>
-                            <li className="list-group-item"><strong>Website:</strong> www.johndoe.com</li>
+                            {phone && <li className="list-group-item"><strong>Phone:</strong> {phone}</li>}
+                            {webSite && <li className="list-group-item"><strong>Website:</strong> {webSite}</li>}
                         </ul>
                     </div>
                 </div>
                 <div className="col-md-8">
+                    {aboutYou && 
                     <div className="card">
                         <div className="card-body">
                             <h5 className="card-title">About Me</h5>
-                            <p className="card-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed ultrices, nisi vel aliquam tristique, nulla leo bibendum nunc, at pulvinar arcu enim non lectus. Nunc bibendum laoreet ex, non volutpat dolor. Duis sed massa sit amet felis accumsan efficitur. Vivamus porta mollis magna et blandit. Aliquam ornare urna turpis, eget aliquet justo mattis at. Ut sed ligula vitae lorem rutrum posuere.</p>
+                            <p className="card-text">{aboutYou}</p>
                         </div>
-                    </div>
+                    </div>}
                     <div className="card mt-3"></div>
                     <div className="card-body">
                         <h5 className="card-title">Skills</h5>
+                        {skills && 
                         <ul className="list-group">
-                            <li className="list-group-item">HTML</li>
-                            <li className="list-group-item">CSS</li>
-                            <li className="list-group-item">JavaScript</li>
-                            <li className="list-group-item">Bootstrap</li>
-                            <li className="list-group-item">jQuery</li>
-                            <li className="list-group-item">PHP</li>
-                        </ul>
+                            {skills.map((skill, index) => <li key={skill + "" + index} className="list-group-item">{skill}</li>)}
+                        </ul>}
                     </div>
                 </div>
             </div>

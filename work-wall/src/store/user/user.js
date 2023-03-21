@@ -3,14 +3,14 @@ import { createSlice } from '@reduxjs/toolkit';
 export const userData = createSlice({
     name: 'userData',
     initialState: {
-      username: null, // da naprawq po registraciq i login da se postwa i username i da se poluchava
+      username: null,
       email: null,
       _id: null,
       accessToken: null,
       phoneNumber: null,
       webSite: null,
-      aboutUser: null,
-      skils: null,
+      aboutYou: null,
+      skills: null,
       photo: null
     },
     reducers: {
@@ -29,16 +29,16 @@ export const userData = createSlice({
           state.phoneNumber = action.payload.phoneNumber;
         }
         if (action.payload.webSite) {
-          state.phoneNumber = action.payload.webSite;
+          state.webSite = action.payload.webSite;
         }
-        if (action.payload.aboutUser) {
-          state.phoneNumber = action.payload.aboutUser;
+        if (action.payload.aboutYou) {
+          state.aboutYou = action.payload.aboutYou;
         }
-        if (action.payload.skils) {
-          state.phoneNumber = action.payload.skils;
+        if (action.payload.allSkill.length !== 0) {
+          state.skills = action.payload.allSkill;
         }
         if (action.payload.photo) {
-          state.phoneNumber = action.payload.photo;
+          state.photo = action.payload.photo;
         }
       }
       // decrement: (state) => {
@@ -51,6 +51,6 @@ export const userData = createSlice({
   })
   
   // Action creators are generated for each case reducer function
-  export const { setBasedata } = userData.actions;
+  export const { setBasedata, setDetailedData } = userData.actions;
   
   export default userData.reducer;

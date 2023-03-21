@@ -2,7 +2,7 @@ import { Link } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 
 export const Navigation = () => {
-    const username = useSelector((state) => state.user.username)
+    const _id = useSelector((state) => state.user._id)
 
     return (
         <nav className="navbar navbar-expand-lg navbar-dark fixed-top navbar-shrink" id="mainNav">
@@ -18,11 +18,11 @@ export const Navigation = () => {
                         <li className="nav-item"><Link className="nav-link" to="/projects">All projects</Link></li>
                         <li className="nav-item"><Link className="nav-link" to="/about">About</Link></li>
                         <li className="nav-item"><Link className="nav-link" to="/contact">Contact</Link></li>
-                        {username && 
-                        <><li className="nav-item"><Link className="nav-link" to={`/profile/${username}`}>Profile</Link></li>
+                        {_id && 
+                        <><li className="nav-item"><Link className="nav-link" to={`/profile/${_id}`}>Profile</Link></li>
                         <li className="nav-item"><Link className="nav-link" to="/logout">logout</Link></li></>
                         }
-                        {!username && 
+                        {!_id && 
                         <><li className="nav-item"><Link className="nav-link" to="/login">Login</Link></li>
                         <li className="nav-item"><Link className="nav-link" to="/register">Register</Link></li></>}
                     </ul>
