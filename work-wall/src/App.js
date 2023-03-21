@@ -12,6 +12,8 @@ import { EditUserDetails } from './components/profilePage/EditUserDatails';
 import { NotFound } from './components/404Page/404';
 import { Register } from './components/registerPage/Register';
 import { Login } from './components/loginPage/Login';
+import { Logout } from './components/logoutPage/Logout';
+
 
 function App() {
   return (
@@ -27,6 +29,7 @@ function App() {
         <Route path='/edit-user-details/:id' element={<EditUserDetails />} />
         <Route path='/register' element={<Register />} />
         <Route path='/login' element={<Login />} />
+        <Route path='/logout' element={<Logout />} />
         <Route path='*' element={<NotFound />} />
       </Routes>
       <Footer />

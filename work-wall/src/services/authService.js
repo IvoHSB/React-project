@@ -27,3 +27,15 @@ export const login = (email, password) => {
 
     return result;
 }
+
+export const logout = (accessToken) => {
+
+    let result = fetch(`${url}/logout`, {
+        method: "POST",
+        headers: {
+            'X-Authorization': accessToken
+        },
+    })
+
+    return result;
+}
