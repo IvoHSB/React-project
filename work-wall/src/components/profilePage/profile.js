@@ -15,6 +15,7 @@ export const Profile = () => {
     const aboutYou = useSelector((state) => state.user.aboutYou);
     const photo = useSelector((state) => state.user.photo);
     const skills = useSelector((state) => state.user.skills);
+    const otherSkill = useSelector((state) => state.user.otherSkill);
 
     const editUserDetailsPage = () => {
         dispatch(changeMethod("PUT"));
@@ -53,6 +54,7 @@ export const Profile = () => {
                         {skills && 
                         <ul className="list-group">
                             {skills.map((skill, index) => <li key={skill + "" + index} className="list-group-item">{skill}</li>)}
+                            {otherSkill && <li className="list-group-item"><b>Other: </b>{otherSkill}</li>}
                         </ul>}
                     </div>
                 </div>

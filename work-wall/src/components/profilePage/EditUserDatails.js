@@ -15,14 +15,21 @@ export const EditUserDetails = () => {
     const _id = useSelector((state) => state.user._id);
     const methodForChangeDetails = useSelector((state) => state.user.methodForChangeDetails);
     const detailsId = useSelector((state) => state.user.detailsId);
+    const photo = useSelector((state) => state.user.photo);
+    const phoneNumber = useSelector((state) => state.user.phoneNumber);
+    const webSite = useSelector((state) => state.user.webSite);
+    const aboutYou = useSelector((state) => state.user.aboutYou);
+    const skills = useSelector((state) => state.user.skills);
+    const otherSkill = useSelector((state) => state.user.otherSkill);
+
 
     const onSubmit = (e) => {
         e.preventDefault();
-        
+
         const data = Object.fromEntries(new FormData(e.target));
 
-        Object.keys(data).map(function(key) { 
-            if(key.startsWith('skill')) {
+        Object.keys(data).map(function (key) {
+            if (key.startsWith('skill')) {
                 availableSkils.push(key.split('skill').join(''));
             }
         });
@@ -31,21 +38,29 @@ export const EditUserDetails = () => {
 
         if (methodForChangeDetails === "POST") {
             setDetails(data, accessToken)
-            .then(function (resp) {
+                .then(function (resp) {
                     console.log(resp);
                     dispatch(setDetailedData(resp));
                     navigate(`/profile/${_id}`);
-            });
+                });
         } else if (methodForChangeDetails === "PUT") {
             editDetails(data, accessToken, detailsId)
-            .then(function (resp) {
-                console.log(resp);
-                dispatch(setDetailedData(resp));
-                navigate(`/profile/${_id}`);
-        });
+                .then(function (resp) {
+                    console.log(resp);
+                    dispatch(setDetailedData(resp));
+                    navigate(`/profile/${_id}`);
+                });
         }
-        
 
+    }
+
+    const isHaveSkill = (skill) => {
+        if (skills) {
+            if (skills.includes(skill)) {
+                return true;
+            }
+        }
+        return false;
     }
 
     return (
@@ -56,32 +71,42 @@ export const EditUserDetails = () => {
                     <form onSubmit={onSubmit}>
                         <div className="mb-3">
                             <label htmlFor="inputPhoto" className="form-label">Photo</label>
-                            <input type="text" className="form-control" id="inputPhoto" name="photo" />
+                            <input type="text" className="form-control" id="inputPhoto" name="photo" defaultValue={photo} />
                         </div>
                         <div className="mb-3">
                             <label htmlFor="inputPhoneNumber" className="form-label">Phone Number</label>
-                            <input type="text" className="form-control" id="inputPhoneNumber" name="phoneNumber" />
+                            <input type="text" className="form-control" id="inputPhoneNumber" name="phoneNumber" defaultValue={phoneNumber} />
                         </div>
                         <div className="mb-3">
                             <label htmlFor="inputWebSite" className="form-label">Web Site</label>
-                            <input type="text" className="form-control" id="inputWebSite" name="webSite" />
+                            <input type="text" className="form-control" id="inputWebSite" name="webSite" defaultValue={webSite} />
                         </div>
                         <div className="mb-3">
                             <label htmlFor="textareaAboutYou" className="form-label">About you</label>
-                            <textarea className="form-control" id="textareaAboutYou" name="aboutYou" rows="3"></textarea>
+                            <textarea className="form-control" id="textareaAboutYou" name="aboutYou" rows="3" defaultValue={aboutYou}></textarea>
                         </div>
                         <div className="mb-3">
-                            <p><b>Select Your Skills</b></p> 
+                            <p><b>Select Your Skills</b></p>
                             {allSkills.map((skill) => (
                                 <span key={skill}>
-                                <input type="checkbox" className="btn-check" name={`skill${skill}`} id={`btnCheck${skill}`} autoComplete="off" />
-                                <label className="btn btn-primary" htmlFor={`btnCheck${skill}`}>{skill}</label>
+                                    {isHaveSkill(skill) &&
+                                        <>
+                                            <input type="checkbox" className="btn-check" name={`skill${skill}`} id={`btnCheck${skill}`} defaultChecked autoComplete="off" />
+                                            <label className="btn btn-primary" htmlFor={`btnCheck${skill}`}>{skill}</label>
+                                        </>
+                                    }
+                                    {!isHaveSkill(skill) &&
+                                        <>
+                                            <input type="checkbox" className="btn-check" name={`skill${skill}`} id={`btnCheck${skill}`} autoComplete="off" />
+                                            <label className="btn btn-primary" htmlFor={`btnCheck${skill}`}>{skill}</label>
+                                        </>
+                                    }
                                 </span>
                             ))}
                         </div>
                         <div className="mb-3">
                             <label htmlFor="inputOtherSkill" className="form-label">Other Skill</label>
-                            <input type="text" className="form-control" id="inputOtherSkill" name="otherSkill" />
+                            <input type="text" className="form-control" id="inputOtherSkill" name="otherSkill" defaultValue={otherSkill}/>
                         </div>
                         <div className="text-center">
                             <button type="submit" className="btn btn-primary">Continued</button>

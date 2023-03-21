@@ -12,6 +12,7 @@ export const userData = createSlice({
       aboutYou: null,
       skills: null,
       photo: null,
+      otherSkill: null,
       methodForChangeDetails: 'POST',
       detailsId: null
     },
@@ -36,12 +37,14 @@ export const userData = createSlice({
         if (action.payload.aboutYou) {
           state.aboutYou = action.payload.aboutYou;
         }
-        console.log(action.payload.allSkill)
         if (action.payload.allSkill) {
           state.skills = action.payload.allSkill;
         }
         if (action.payload.photo) {
           state.photo = action.payload.photo;
+        }
+        if (action.payload.otherSkill) {
+          state.otherSkill = action.payload.otherSkill;
         }
         state.detailsId = action.payload._id;
       },
