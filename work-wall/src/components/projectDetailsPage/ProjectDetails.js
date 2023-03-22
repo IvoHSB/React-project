@@ -15,7 +15,6 @@ export const ProjectDetails = () => {
     const projectId = location.pathname.split('/projects/').join('');
 
     useEffect(() => {
-        console.log('in')
         getProject(projectId)
         .then(function (resp) {
             dispatch(setProjectData(resp));

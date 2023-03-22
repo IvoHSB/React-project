@@ -5,6 +5,7 @@ import { HomePage } from "./components/homePage/HmePage";
 import { Footer } from "./components/footer/Footer";
 import { Projects } from "./components/allProjectsPage/Projects";
 import { ProjectDetails } from './components/projectDetailsPage/ProjectDetails';
+import { EditProject } from './components/editProgectPage/EditProject';
 import { CreateProject } from './components/createProjectPage/CreateProject';
 import { About } from "./components/aboutPage/About";
 import { Contact } from "./components/contactPage/Contact";
@@ -29,6 +30,7 @@ function App() {
         <Route path='/profile/:id' element={<Profile />} />
         <Route path='/edit-user-details/:id' element={<EditUserDetails />} />
         <Route path='/add-project' element={<CreateProject />} />
+        <Route path='/edit-project/:id' element={<EditProject />} />
         <Route path='/register' element={<Register />} />
         <Route path='/login' element={<Login />} />
         <Route path='/logout' element={<Logout />} />
