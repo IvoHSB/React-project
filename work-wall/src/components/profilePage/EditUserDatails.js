@@ -12,18 +12,16 @@ export const EditUserDetails = () => {
     let availableSkils = [];
 
     const accessToken = useSelector((state) => state.user.accessToken);
-    const _id = useSelector((state) => state.user._id);
     const username = useSelector((state) => state.user.username);
     const email = useSelector((state) => state.user.email);
     const methodForChangeDetails = useSelector((state) => state.user.methodForChangeDetails);
     const detailsId = useSelector((state) => state.user.detailsId);
-    const photo = useSelector((state) => state.user.photo);
-    const phoneNumber = useSelector((state) => state.user.phoneNumber);
-    const webSite = useSelector((state) => state.user.webSite);
-    const aboutYou = useSelector((state) => state.user.aboutYou);
-    const skills = useSelector((state) => state.user.skills);
-    const otherSkill = useSelector((state) => state.user.otherSkill);
-
+    const photo = useSelector((state) => state.profile.photo);
+    const phoneNumber = useSelector((state) => state.profile.phoneNumber);
+    const webSite = useSelector((state) => state.profile.webSite);
+    const aboutYou = useSelector((state) => state.profile.aboutYou);
+    const skills = useSelector((state) => state.profile.skills);
+    const otherSkill = useSelector((state) => state.profile.otherSkill);
 
     const onSubmit = (e) => {
         e.preventDefault();

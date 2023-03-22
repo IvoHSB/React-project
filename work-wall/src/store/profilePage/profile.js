@@ -41,9 +41,20 @@ export const profileData = createSlice({
             }
             state.ownerId = action.payload._ownerId;
         },
+        clearProfileDetails (state) {
+          state.username = null;
+          state.email = null;
+          state.phoneNumber = null;
+          state.webSite = null;
+          state.aboutYou = null;
+          state.skills = null;
+          state.photo = null;
+          state.otherSkill = null;
+          state.ownerId = null;
+        }
     }
 })
 
-export const { setProfileData } = profileData.actions;
+export const { setProfileData, clearProfileDetails } = profileData.actions;
   
 export default profileData.reducer;

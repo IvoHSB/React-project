@@ -3,6 +3,7 @@ import { logout } from "../../services/authService";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { onLogout } from "../../store/user/user";
+import { clearProfileDetails } from "../../store/profilePage/profile";
 
 export const Logout = () => {
     const navigate = useNavigate();
@@ -13,6 +14,7 @@ export const Logout = () => {
     useEffect(() => {
         logout(accessToken);
         dispatch(onLogout());
+        dispatch(clearProfileDetails());
         navigate('/');
     }, [])
 
