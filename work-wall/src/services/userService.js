@@ -1,4 +1,4 @@
-let url = "http://localhost:3030/data"
+let url = "http://localhost:3030/data";
 
 export const setDetails = (data, accessToken) => {
 

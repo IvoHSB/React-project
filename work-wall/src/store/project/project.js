@@ -9,7 +9,11 @@ export const projectData = createSlice({
         category: 'chooseOption',
         otherCategory: null,
         technology: null,
-        webSite: null
+        webSite: null,
+        allTechnology: null,
+        _id: null,
+        _ownerId: null,
+        owner: null
     },
     reducers: {
         setProjectData: (state, action) => {
@@ -17,11 +21,13 @@ export const projectData = createSlice({
             state.title = action.payload.title;
             state.description = action.payload.description;
             state.category = action.payload.category;
-            if (action.payload.otherCategory) {
-                state.otherCategory = action.payload.otherCategory;
-            }
+            state.otherCategory = action.payload.otherCategory;
             state.technology = action.payload.technology;
             state.webSite = action.payload.webSite;
+            state.allTechnology = action.payload.allTechnology;
+            state._id = action.payload._id;
+            state._ownerId = action.payload._ownerId;
+            state.owner = action.payload.owner;
         },
     }
 })

@@ -1,19 +1,45 @@
 import { useDispatch, useSelector } from 'react-redux';
 import { setProjectData } from '../../store/project/project';
+import { setProject } from '../../services/projectService';
+import { useNavigate } from 'react-router-dom';
 
 export const CreateProject = () => {
     const dispatch = useDispatch();
+    const navigate = useNavigate();
+
+    const accessToken = useSelector((state) => state.user.accessToken);
+    const username = useSelector((state) => state.user.username);
     const category = useSelector((state) => state.project.category);
 
     let allTechnology = ["HTML", "CSS", "JavaScript", "React", "Java", "Python", "C++", "C#", "PHP", "Git", "Angular", "Vue", "SQL", "NoSQL", "Bootstrap", "MongoDB", "NodeJS", "jQuery"];
 
     const onSubmit = (e) => {
         e.preventDefault();
+
+        let availableTechnology = [];
+
+        const data = Object.fromEntries(new FormData(e.target));
+
+        Object.keys(data).map(function (key) {
+            if (key.startsWith('technology')) {
+                availableTechnology.push(key.split('technology').join(''));
+            }
+        });
+
+        data.allTechnology = availableTechnology;
+        data.owner = username;
+
+        setProject(data, accessToken)
+        .then(function (resp) {
+            dispatch(setProjectData(resp));
+            navigate(`/projects/${resp._id}`);
+        });
+
     }
 
     const otherCategory = (value) => {
         console.log(value)
-        dispatch(setProjectData({category: value}));
+        dispatch(setProjectData({ category: value }));
     }
 
     return (
