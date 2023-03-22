@@ -53,9 +53,10 @@ export const Register = () => {
                         _id: resp['_id'],
                         accessToken: resp['accessToken']
                     }));
+                    dispatch(changeMethod("POST"));
                     setDetails({username: resp['username'], email: resp['email'],}, resp['accessToken'])
                     .then(profileResp => dispatch(setDetailedData(profileResp)));
-                    dispatch(changeMethod("POST"));
+                    dispatch(changeMethod("PUT"));
                     navigate(`/edit-user-details/${resp['_id']}`)
                 }
             })
