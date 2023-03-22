@@ -21,6 +21,13 @@ export const userData = createSlice({
         state._id = action.payload._id;
         state.accessToken = action.payload.accessToken
       },
+      onLogout(state) {
+        state.username = null;
+        state._id = null;
+        state.email = null;
+        state.accessToken = null;
+        state.detailsId = null;
+      },
       setDetailedData: (state, action) => {
         state.detailsId = action.payload._id;
       },
@@ -37,6 +44,6 @@ export const userData = createSlice({
   })
   
   // Action creators are generated for each case reducer function
-  export const { setBasedata, setDetailedData, changeMethod } = userData.actions;
+  export const { setBasedata, onLogout, setDetailedData, changeMethod } = userData.actions;
   
   export default userData.reducer;
