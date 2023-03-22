@@ -9,6 +9,8 @@ export const ProjectDetails = () => {
     const dispatch = useDispatch();
     const location = useLocation();
     const navigate = useNavigate();
+    let currUserId = useSelector((state) => state.user._id);
+
 
     const projectId = location.pathname.split('/projects/').join('');
 
@@ -42,7 +44,7 @@ export const ProjectDetails = () => {
             <div className="container my-5" style={{ paddingTop: "100px" }}>
                 <div className="row">
                     <div className="col-md-6">
-                        <img src="https://picsum.photos/500/300" className="img-fluid rounded mb-3" alt="Project Image" />
+                        <img src={photo} className="img-fluid rounded mb-3" alt="Project Image" />
                     </div>
                     <div className="col-md-6">
                         <h1>{title}</h1>
@@ -51,8 +53,9 @@ export const ProjectDetails = () => {
                             <li className="list-group-item" onClick={visitAuthor} style={{cursor: 'pointer'}}><strong>Author:</strong> {owner}</li>
                             <li className="list-group-item"><strong>Category:</strong> {category != 'other' ? category : otherCategory}</li>
                             <li className="list-group-item"><strong>Technology:</strong> {allTechnology && allTechnology.join(', ')}</li>
+                            {webSite && <li className="list-group-item"><strong>Web site:</strong> {webSite}</li>}
                         </ul>
-                        <a href="#" className="btn btn-primary">Visit Website</a>
+                        {currUserId == _ownerId && currUserId && <button type="button" className="btn btn-primary">Edit details</button>}
                     </div>
                 </div>
             </div>
