@@ -19,7 +19,10 @@ export const Profile = () => {
     }, [])
 
     const _id = useSelector((state) => state.user._id);
-    const ownerProfileId = useSelector((state) => state.user.ownerId);
+    const ownerProfileId = useSelector((state) => state.profile.ownerId);
+    
+    console.log(_id)
+    console.log(ownerProfileId)
 
     const username = useSelector((state) => state.profile.username);
     const email = useSelector((state) => state.profile.email);
@@ -44,7 +47,7 @@ export const Profile = () => {
                         {!photo && <img src="https://via.placeholder.com/300x300" alt="Profile Picture" className="card-img-top" />}
                         <div className="card-body">
                             <h5 className="card-title">{username}</h5>
-                            {_id === ownerProfileId && <button type="button" style={{float: 'right'}} className="btn btn-primary" onClick={editUserDetailsPage}>change info</button>}
+                            {_id == ownerProfileId && _id && <button type="button" style={{float: 'right'}} className="btn btn-primary" onClick={editUserDetailsPage}>change info</button>}
                         </div>
                         <ul className="list-group list-group-flush">
                             <li className="list-group-item"><strong>Email:</strong> {email}</li>
