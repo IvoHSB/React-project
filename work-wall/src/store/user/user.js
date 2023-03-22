@@ -7,12 +7,6 @@ export const userData = createSlice({
       email: null,
       _id: null,
       accessToken: null,
-      phoneNumber: null,
-      webSite: null,
-      aboutYou: null,
-      skills: null,
-      photo: null,
-      otherSkill: null,
       methodForChangeDetails: 'POST',
       detailsId: null,
     },
@@ -28,24 +22,6 @@ export const userData = createSlice({
         state.accessToken = action.payload.accessToken
       },
       setDetailedData: (state, action) => {
-        if (action.payload.phoneNumber) {
-          state.phoneNumber = action.payload.phoneNumber;
-        }
-        if (action.payload.webSite) {
-          state.webSite = action.payload.webSite;
-        }
-        if (action.payload.aboutYou) {
-          state.aboutYou = action.payload.aboutYou;
-        }
-        if (action.payload.allSkill) {
-          state.skills = action.payload.allSkill;
-        }
-        if (action.payload.photo) {
-          state.photo = action.payload.photo;
-        }
-        if (action.payload.otherSkill) {
-          state.otherSkill = action.payload.otherSkill;
-        }
         state.detailsId = action.payload._id;
       },
       changeMethod: (state, action) => {
