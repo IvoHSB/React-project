@@ -43,7 +43,10 @@ export const Login = () => {
                             accessToken: resp['accessToken']
                         }));
                         getProfileByUserId(resp['_id'])
-                        .then(profileResp => dispatch(setDetailedData(profileResp)))
+                            .then(function (profileResp) {
+                                console.log(profileResp[0])
+                                dispatch(setDetailedData(profileResp[0]))
+                            })
                         console.log(resp);
                         navigate('/')
                     }
