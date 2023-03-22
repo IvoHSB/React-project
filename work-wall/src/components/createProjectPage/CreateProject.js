@@ -54,11 +54,11 @@ export const CreateProject = () => {
                         </div>
                         <div className="mb-3">
                             <label htmlFor="inputProjectTitle" className="form-label">Project title</label>
-                            <input type="text" className="form-control" id="inputProjectTitle" name="projectTitle" required />
+                            <input type="text" className="form-control" id="inputProjectTitle" name="title" required />
                         </div>
                         <div className="mb-3">
                             <label htmlFor="inputProjectCategory" className="form-label">Project category</label>
-                            <select type="text" className="form-control" id="inputProjectCategory" name="projectCategory" defaultValue={category} onChange={(event) => otherCategory(event.target.value)}>
+                            <select type="text" className="form-control" id="inputProjectCategory" name="category" defaultValue={category} onChange={(event) => otherCategory(event.target.value)}>
                                 <option disabled value="chooseOption">Choose category</option>
                                 <option value="webDev">Web Development</option>
                                 <option value="frondEnd">Frond-end</option>

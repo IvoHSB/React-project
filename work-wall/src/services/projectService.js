@@ -14,3 +14,12 @@ export const setProject = (data, accessToken) => {
 
      return result;
 }
+
+export const getProject = (id) =>  {
+    let result = fetch(`${url}/projects/${id}`, {
+        method: "GET"
+    })
+    .then((resp) => resp.json())
+
+     return result;
+}

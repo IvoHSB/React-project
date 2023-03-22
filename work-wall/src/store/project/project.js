@@ -8,7 +8,6 @@ export const projectData = createSlice({
         description: null,
         category: 'chooseOption',
         otherCategory: null,
-        technology: null,
         webSite: null,
         allTechnology: null,
         _id: null,
@@ -22,7 +21,6 @@ export const projectData = createSlice({
             state.description = action.payload.description;
             state.category = action.payload.category;
             state.otherCategory = action.payload.otherCategory;
-            state.technology = action.payload.technology;
             state.webSite = action.payload.webSite;
             state.allTechnology = action.payload.allTechnology;
             state._id = action.payload._id;
