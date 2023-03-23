@@ -57,3 +57,12 @@ export const getProjectsNumPages = () => {
 
     return result;
 }
+
+export const getProjectsByOwnerId = (id) => {
+    let result = fetch(`${url}/projects?where=_ownerId%3D%22${id}%22`, {
+        method: "GET"
+    })
+    .then((resp) => resp.json())
+
+    return result;
+}

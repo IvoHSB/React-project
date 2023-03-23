@@ -11,7 +11,8 @@ export const profileData = createSlice({
         skills: null,
         photo: null,
         otherSkill: null,
-        ownerId: null
+        ownerId: null,
+        ownProjects: null
     },
     reducers: {
         setProfileData: (state, action) => {
@@ -41,6 +42,10 @@ export const profileData = createSlice({
             }
             state.ownerId = action.payload._ownerId;
         },
+        setOwnProjects(state, action) {
+          console.log(action)
+          state.ownProjects = action.payload;
+        },
         clearProfileDetails (state) {
           state.username = null;
           state.email = null;
@@ -51,10 +56,11 @@ export const profileData = createSlice({
           state.photo = null;
           state.otherSkill = null;
           state.ownerId = null;
-        }
+          state.ownProjects = null;
+        },
     }
 })
 
-export const { setProfileData, clearProfileDetails } = profileData.actions;
+export const { setProfileData, clearProfileDetails, setOwnProjects } = profileData.actions;
   
 export default profileData.reducer;
