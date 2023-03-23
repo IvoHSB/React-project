@@ -13,7 +13,8 @@ export const projectData = createSlice({
         _id: null,
         _ownerId: null,
         owner: null,
-        pages: null
+        pages: null,
+        projectOnPage: null
     },
     reducers: {
         setProjectData: (state, action) => {
@@ -30,10 +31,13 @@ export const projectData = createSlice({
         },
         setNumOfPages: (state, action) => {
             state.pages = action.payload;
+        },
+        setProjectsOnPage: (state, action) => {
+            state.projectOnPage = action.payload;
         }
     }
 })
 
-export const { setProjectData, setNumOfPages } = projectData.actions;
+export const { setProjectData, setNumOfPages, setProjectsOnPage } = projectData.actions;
 
 export default projectData.reducer;
