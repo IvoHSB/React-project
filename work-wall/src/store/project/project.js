@@ -12,7 +12,8 @@ export const projectData = createSlice({
         allTechnology: null,
         _id: null,
         _ownerId: null,
-        owner: null
+        owner: null,
+        pages: null
     },
     reducers: {
         setProjectData: (state, action) => {
@@ -27,9 +28,12 @@ export const projectData = createSlice({
             state._ownerId = action.payload._ownerId;
             state.owner = action.payload.owner;
         },
+        setNumOfPages: (state, action) => {
+            state.pages = action.payload;
+        }
     }
 })
 
-export const { setProjectData } = projectData.actions;
+export const { setProjectData, setNumOfPages } = projectData.actions;
 
 export default projectData.reducer;

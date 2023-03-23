@@ -1,11 +1,30 @@
+import { useEffect } from "react";
 import { Link } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
+import { setNumOfPages } from "../../store/project/project";
+import { getProjectsNumPages, getProjectsPage } from '../../services/projectService';
 
 export const Projects = () => {
+    const dispatch = useDispatch();
+
+    let pages = useSelector((state) => state.project.pages);
+
+    useEffect(() => {
+        getProjectsNumPages()
+            .then(function (resp) {
+                if (Number(resp) < 6) {
+                    dispatch(setNumOfPages(1));
+                } else {
+                    dispatch(setNumOfPages((Number(resp) - (Number(resp) % 6)) / 6));
+                }
+            })
+    }, []);
+
     return (
         <section className="page-section bg-light" id="portfolio">
             <div className="container">
                 <div className="text-center">
-                    <h2 className="section-heading text-uppercase">All projects</h2>
+                    <h2 className="section-heading text-uppercase">All projects {pages} </h2>
                     <h3 className="section-subheading text-muted">Lorem ipsum dolor sit amet consectetur.</h3>
                 </div>
                 <div className="row">
