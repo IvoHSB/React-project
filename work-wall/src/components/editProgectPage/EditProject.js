@@ -64,6 +64,10 @@ export const EditProject = () => {
         return false;
     }
 
+    const otherCategoryfunc = (value) => {
+        dispatch(setProjectData({ category: value }));
+    }
+
     return(
         <div className="container" style={{ marginTop: "170px", marginBottom: "167px" }}>
             <h1 className="text-center my-5">Add Project</h1>
@@ -80,7 +84,7 @@ export const EditProject = () => {
                         </div>
                         <div className="mb-3">
                             <label htmlFor="inputProjectCategory" className="form-label">Project category</label>
-                            <select type="text" className="form-control" id="inputProjectCategory" name="category" defaultValue={category} onChange={(event) => otherCategory(event.target.value)}>
+                            <select type="text" className="form-control" id="inputProjectCategory" name="category" defaultValue={category} onChange={(event) => otherCategoryfunc(event.target.value)}>
                                 <option disabled value="chooseOption">Choose category</option>
                                 <option value="Web-Dev">Web Development</option>
                                 <option value="Frond-End">Frond-end</option>
@@ -123,7 +127,7 @@ export const EditProject = () => {
                             ))}
                         </div>
                         <div className="text-center">
-                            <button type="submit" className="btn btn-primary">Post project</button>
+                            <button type="submit" className="btn btn-primary">Save changes</button>
                         </div>
                     </form>
                 </div>

@@ -59,11 +59,11 @@ export const CreateProject = () => {
                             <label htmlFor="inputProjectCategory" className="form-label">Project category</label>
                             <select type="text" className="form-control" id="inputProjectCategory" name="category" defaultValue={category} onChange={(event) => otherCategory(event.target.value)}>
                                 <option disabled value="chooseOption">Choose category</option>
-                                <option value="webDev">Web Development</option>
-                                <option value="frondEnd">Frond-end</option>
-                                <option value="backEnd">Back-end</option>
-                                <option value="fullStack">Full stack</option>
-                                <option value="other">Other</option>
+                                <option value="Web-Dev">Web Development</option>
+                                <option value="Frond-End">Frond-end</option>
+                                <option value="Back-End">Back-end</option>
+                                <option value="Full-Stack">Full stack</option>
+                                <option value="Other">Other</option>
                             </select>
                         </div>
                         {category == 'other' &&

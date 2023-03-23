@@ -14,7 +14,7 @@ export const projectData = createSlice({
         _ownerId: null,
         owner: null,
         pages: null,
-        projectOnPage: null
+        projectOnPage: []
     },
     reducers: {
         setProjectData: (state, action) => {
