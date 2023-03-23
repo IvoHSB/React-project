@@ -41,7 +41,7 @@ export const editProject = (data, accessToken, id) => {
 
 export const getProjectsPage = (page) => {
     let offset = (page * 6) - 6;
-    let result = fetch(`${url}/projects?offset=${offset}&pagSize=6`, {
+    let result = fetch(`${url}/projects?offset=${offset}&pageSize=6`, {
         method: "GET"
     })
     .then((resp) => resp.json())

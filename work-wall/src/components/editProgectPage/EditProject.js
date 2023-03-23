@@ -93,7 +93,7 @@ export const EditProject = () => {
                                 <option value="Other">Other</option>
                             </select>
                         </div>
-                        {category == 'other' &&
+                        {category == 'Other' &&
                             <div className="mb-3">
                                 <label htmlFor="inputOtherCategory" className="form-label">Other category</label>
                                 <input type="text" className="form-control" id="inputOtherCategory" name="otherCategory" defaultValue={otherCategory} required />
