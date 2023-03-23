@@ -38,7 +38,6 @@ export const CreateProject = () => {
     }
 
     const otherCategory = (value) => {
-        console.log(value)
         dispatch(setProjectData({ category: value }));
     }
 

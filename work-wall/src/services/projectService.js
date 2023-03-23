@@ -23,3 +23,18 @@ export const getProject = (id) =>  {
 
      return result;
 }
+
+export const editProject = (data, accessToken, id) => {
+
+    let result = fetch(`${url}/projects/${id}`, {
+        method: "PUT",
+        headers: {
+            'Content-Type': 'application/json',
+            'X-Authorization': accessToken
+        },
+        body: JSON.stringify(data),
+    })
+    .then((resp) => resp.json())
+
+    return result;
+}

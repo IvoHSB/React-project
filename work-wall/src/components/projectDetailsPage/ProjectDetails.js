@@ -37,6 +37,10 @@ export const ProjectDetails = () => {
         .then((resp) => navigate(`/profile/${resp[0]['_id']}`))
     }
 
+    const editProject = () => {
+        navigate(`/edit-project/${_id}`);
+    }
+
 
     return (
         <>
@@ -54,7 +58,7 @@ export const ProjectDetails = () => {
                             <li className="list-group-item"><strong>Technology:</strong> {allTechnology && allTechnology.join(', ')}</li>
                             {webSite && <li className="list-group-item"><strong>Web site:</strong> {webSite}</li>}
                         </ul>
-                        {currUserId == _ownerId && currUserId && <button type="button" className="btn btn-primary">Edit details</button>}
+                        {currUserId == _ownerId && currUserId && <button type="button" className="btn btn-primary" onClick={editProject}>Edit details</button>}
                     </div>
                 </div>
             </div>
