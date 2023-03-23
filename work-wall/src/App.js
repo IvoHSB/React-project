@@ -1,4 +1,5 @@
 import { Routes, Route } from 'react-router-dom';
+import { useSelector } from 'react-redux';
 
 import { Navigation } from "./components/navigation/Navigation";
 import { HomePage } from "./components/homePage/HmePage";
@@ -18,6 +19,9 @@ import { Logout } from './components/logoutPage/Logout';
 
 
 function App() {
+
+  let _id = useSelector((state) => state.user._id);
+
   return (
     <>
       <Navigation />
@@ -28,9 +32,9 @@ function App() {
         <Route path='/about' element={<About />} />
         <Route path='/contact' element={<Contact />} />
         <Route path='/profile/:id' element={<Profile />} />
-        <Route path='/edit-user-details/:id' element={<EditUserDetails />} />
-        <Route path='/add-project' element={<CreateProject />} />
-        <Route path='/edit-project/:id' element={<EditProject />} />
+        <Route path='/edit-user-details/:id' element={_id ? <EditUserDetails /> : <NotFound />} />
+        <Route path='/add-project' element={_id ? <CreateProject /> : <NotFound />} />
+        <Route path='/edit-project/:id' element={_id ? <EditProject /> : <NotFound />} />
         <Route path='/register' element={<Register />} />
         <Route path='/login' element={<Login />} />
         <Route path='/logout' element={<Logout />} />

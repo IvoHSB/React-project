@@ -1,6 +1,20 @@
-import { Link } from "react-router-dom";
+import { Link, useNavigate, useLocation } from "react-router-dom";
+import { useEffect } from "react";
 
 export const NotFound = () => {
+    const location = useLocation();
+    const navigate = useNavigate();
+
+    let path = location.pathname;
+
+    console.log(path)
+
+    useEffect(() => {
+        if (path !== '/404') {
+            navigate('/404')
+        }
+    }, []);
+
     return (
         <div className="container d-flex justify-content-center align-items-center" style={{marginTop: "230px", marginBottom: "259px"}}>
             <div className="text-center">

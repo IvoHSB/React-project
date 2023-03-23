@@ -12,10 +12,12 @@ export const Logout = () => {
     const accessToken = useSelector((state) => state.user.accessToken);
 
     useEffect(() => {
-        logout(accessToken);
-        dispatch(onLogout());
+        navigate('/login');
+        if (accessToken) {
+            logout(accessToken);
+        }
         dispatch(clearProfileDetails());
-        navigate('/');
+        dispatch(onLogout());
     }, [])
 
 }
