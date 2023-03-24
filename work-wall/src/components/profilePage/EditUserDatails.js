@@ -2,11 +2,15 @@ import { useNavigate } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import { setDetailedData } from '../../store/user/user';
 import { setDetails, editDetails } from "../../services/userService";
+import { useState } from "react";
 
 
 export const EditUserDetails = () => {
     const navigate = useNavigate();
     const dispatch = useDispatch();
+
+    let [errorMessage, setErrorMessage] = useState(null);
+    let [haveError, setHaveError] = useState(false);
 
     let allSkills = ["HTML", "CSS", "JavaScript", "React", "Java", "Python", "C++", "C#", "PHP", "Git", "Angular", "Vue", "SQL", "NoSQL", "Bootstrap", "MongoDB", "NodeJS", "jQuery"];
     let availableSkils = [];
@@ -34,24 +38,36 @@ export const EditUserDetails = () => {
             }
         });
 
-        data.allSkill = availableSkils;
-        data.username = username;
-        data.email = email;
+        console.log(data.webSite.startsWith('http://'))
+        console.log(data.webSite.startsWith('https://'))
 
-        if (methodForChangeDetails === "POST") {
-            setDetails(data, accessToken)
-                .then(function (resp) {
-                    console.log(resp);
-                    dispatch(setDetailedData(resp));
-                    navigate(`/profile/${resp._id}`);
-                });
-        } else if (methodForChangeDetails === "PUT") {
-            editDetails(data, accessToken, detailsId)
-                .then(function (resp) {
-                    console.log(resp);
-                    dispatch(setDetailedData(resp));
-                    navigate(`/profile/${resp._id}`);
-                });
+        if (!data.photo.startsWith('http://') && !data.photo.startsWith('https://') && data.photo != '') {
+            setErrorMessage('Photo need strat with http:// or https:// !')
+            setHaveError(true);
+        } else if (!data.webSite.startsWith('http://') && !data.webSite.startsWith('https://') && data.webSite != '' ) {
+            console.log(data.webSite)
+            setErrorMessage('Web site need strat with http:// or https:// !');
+            setHaveError(true);
+        } else {
+            data.allSkill = availableSkils;
+            data.username = username;
+            data.email = email;
+
+            if (methodForChangeDetails === "POST") {
+                setDetails(data, accessToken)
+                    .then(function (resp) {
+                        console.log(resp);
+                        dispatch(setDetailedData(resp));
+                        navigate(`/profile/${resp._id}`);
+                    });
+            } else if (methodForChangeDetails === "PUT") {
+                editDetails(data, accessToken, detailsId)
+                    .then(function (resp) {
+                        console.log(resp);
+                        dispatch(setDetailedData(resp));
+                        navigate(`/profile/${resp._id}`);
+                    });
+            }
         }
 
     }
@@ -67,6 +83,13 @@ export const EditUserDetails = () => {
 
     return (
         <div className="container" style={{ marginTop: "170px", marginBottom: "167px" }}>
+            {haveError &&
+                <div className="card" style={{ position: "fixed", marginLeft: "68%" }}>
+                    <div className="card-body">
+                        <h5 className="card-title">{errorMessage}</h5>
+                    </div>
+                </div>
+            }
             <h1 className="text-center my-5">Enter details</h1>
             <div className="row justify-content-center">
                 <div className="col-md-6">
@@ -108,7 +131,7 @@ export const EditUserDetails = () => {
                         </div>
                         <div className="mb-3">
                             <label htmlFor="inputOtherSkill" className="form-label">Other Skill</label>
-                            <input type="text" className="form-control" id="inputOtherSkill" name="otherSkill" defaultValue={otherSkill}/>
+                            <input type="text" className="form-control" id="inputOtherSkill" name="otherSkill" defaultValue={otherSkill} />
                         </div>
                         <div className="text-center">
                             <button type="submit" className="btn btn-primary">Continued</button>
