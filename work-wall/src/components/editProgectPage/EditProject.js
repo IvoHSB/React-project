@@ -1,13 +1,17 @@
 import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { useNavigate, useLocation  } from "react-router-dom";
+import { useNavigate, useLocation } from "react-router-dom";
 import { getProject, editProject } from '../../services/projectService';
 import { setProjectData } from '../../store/project/project';
+import { useState } from 'react';
 
 export const EditProject = () => {
     const location = useLocation();
     const dispatch = useDispatch();
     const navigate = useNavigate();
+
+    let [errorMessage, setErrorMessage] = useState(null);
+    let [haveError, setHaveError] = useState(false);
 
     let accessToken = useSelector((state) => state.user.accessToken);
     let username = useSelector((state) => state.user.username);
@@ -19,9 +23,9 @@ export const EditProject = () => {
 
     useEffect(() => {
         getProject(projectId)
-        .then(function (resp) {
-            dispatch(setProjectData(resp));
-        });
+            .then(function (resp) {
+                dispatch(setProjectData(resp));
+            });
     }, []);
 
     let technologys = useSelector((state) => state.project.allTechnology);
@@ -43,15 +47,24 @@ export const EditProject = () => {
             }
         });
 
-        data.allTechnology = availableTechnology;
-        data.owner = username;
+        if (!data.photo.startsWith('http://') && !data.photo.startsWith('https://') && data.photo != '') {
+            setErrorMessage('Photo need strat with http:// or https:// !')
+            setHaveError(true);
+        } else if (!data.webSite.startsWith('http://') && !data.webSite.startsWith('https://') && data.webSite != '') {
+            console.log(data.webSite)
+            setErrorMessage('Web site need strat with http:// or https:// !');
+            setHaveError(true);
+        } else {
+            data.allTechnology = availableTechnology;
+            data.owner = username;
 
-        editProject(data, accessToken, projectId)
+            editProject(data, accessToken, projectId)
                 .then(function (resp) {
                     console.log(resp)
                     dispatch(setProjectData(resp));
                     navigate(`/projects/${resp._id}`);
                 });
+        }
 
     }
 
@@ -68,8 +81,15 @@ export const EditProject = () => {
         dispatch(setProjectData({ category: value }));
     }
 
-    return(
+    return (
         <div className="container" style={{ marginTop: "170px", marginBottom: "167px" }}>
+            {haveError &&
+                <div className="card" style={{ position: "fixed", marginLeft: "68%" }}>
+                    <div className="card-body">
+                        <h5 className="card-title">{errorMessage}</h5>
+                    </div>
+                </div>
+            }
             <h1 className="text-center my-5">Add Project</h1>
             <div className="row justify-content-center">
                 <div className="col-md-6">
