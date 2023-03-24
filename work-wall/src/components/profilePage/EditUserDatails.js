@@ -38,9 +38,6 @@ export const EditUserDetails = () => {
             }
         });
 
-        console.log(data.webSite.startsWith('http://'))
-        console.log(data.webSite.startsWith('https://'))
-
         if (!data.photo.startsWith('http://') && !data.photo.startsWith('https://') && data.photo != '') {
             setErrorMessage('Photo need strat with http:// or https:// !')
             setHaveError(true);
