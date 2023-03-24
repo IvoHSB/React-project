@@ -1,10 +1,12 @@
 import { useEffect } from "react";
-import { useNavigate, useLocation, Link } from "react-router-dom";
+import { useNavigate, useLocation } from "react-router-dom";
 import { useSelector, useDispatch } from 'react-redux';
 import { changeMethod } from "../../store/user/user";
 import { setProfileData, setOwnProjects } from "../../store/profilePage/profile";
 import { getProfile } from "../../services/userService";
 import { getProjectsByOwnerId } from "../../services/projectService";
+
+import { OwnProjects } from "./OwnProjects";
 
 export const Profile = () => {
     const navigate = useNavigate();
@@ -12,7 +14,6 @@ export const Profile = () => {
     const location = useLocation();
     const profileId = location.pathname.split('/profile/').join('');
 
-    const ownerId = useSelector((state) => state.profile.ownerId);
     const _id = useSelector((state) => state.user._id);
     const ownerProfileId = useSelector((state) => state.profile.ownerId);
 
@@ -37,8 +38,6 @@ export const Profile = () => {
     const otherSkill = useSelector((state) => state.profile.otherSkill);
 
     const ownProjects = useSelector((state) => state.profile.ownProjects);
-
-    console.log(ownProjects)
 
     const editUserDetailsPage = () => {
         dispatch(changeMethod("PUT"));
@@ -82,31 +81,10 @@ export const Profile = () => {
                     </div>
                 </div>
             </div>
-            <div className="container my-5">
-                <h2>Projects</h2>
-                <div className="row">
-                    <section className="page-section" id="portfolio">
-                        <div className="container">
-                            {ownProjects && ownProjects.map(ownProject =>
-                                <div key={ownProject._id} className="col-lg-4 col-sm-6 mb-4">
-                                    <div className="portfolio-item">
-                                        <Link className="portfolio-link" data-bs-toggle="modal" to={`/projects/${ownProject._id}`}>
-                                            <div className="portfolio-hover">
-                                                <div className="portfolio-hover-content"><i className="fas fa-plus fa-3x"></i></div>
-                                            </div>
-                                            <img className="img-fluid" src={ownProject.photo} alt="..." />
-                                        </Link>
-                                        <div className="portfolio-caption bg-light">
-                                            <div className="portfolio-caption-heading">{ownProject.title}</div>
-                                            <div className="portfolio-caption-subheading text-muted">{ownProject.category !== 'Other' ? ownProject.category : ownProject.otherCategory}</div>
-                                        </div>
-                                    </div>
-                                </div>
-                            )}
-                        </div>
-                    </section>
-                </div>
-            </div>
+            {ownProjects &&
+                <OwnProjects />
+            }
+
         </main>
     );
 }
