@@ -1,11 +1,11 @@
 import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate, useLocation, } from "react-router-dom";
-import { getProject, getProjectsByCategory } from '../../services/projectService';
+import { getProject, getProjectsByCategory, deleteProject } from '../../services/projectService';
 import { setProjectData, setSimilarProjects } from '../../store/project/project';
 import { getProfileByUserId } from '../../services/userService';
 import { getComments } from '../../services/commentService';
-import { setComments } from '../../store/project/project';
+import { setComments, clearProjectData } from '../../store/project/project';
 
 import { SimilarProjects } from './SimilarProjects';
 import { CommentsSection } from './CommentsSection';
@@ -15,9 +15,10 @@ export const ProjectDetails = () => {
     const location = useLocation();
     const navigate = useNavigate();
 
-    let currUserId = useSelector((state) => state.user._id);
+    let [confirmDelet, setConfirmDelete] = useState(false);
 
-    let _id = useSelector((state) => state.project._id);
+    let currUserId = useSelector((state) => state.user._id);
+    let accessToken = useSelector((state) => state.user.accessToken);
 
     const projectId = location.pathname.split('/projects/').join('');
 
@@ -55,7 +56,6 @@ export const ProjectDetails = () => {
     let allTechnology = useSelector((state) => state.project.allTechnology);
     let _ownerId = useSelector((state) => state.project._ownerId);
     let owner = useSelector((state) => state.project.owner);
-    let similarProjects = useSelector((state) => state.project.similarProjects);
 
 
     const visitAuthor = () => {
@@ -64,14 +64,45 @@ export const ProjectDetails = () => {
     }
 
     const editProject = () => {
-        navigate(`/edit-project/${_id}`);
+        navigate(`/edit-project/${projectId}`);
     }
 
+    const deletePost = () => {
+        setConfirmDelete(true);
+    }
 
+    const confirmDelete = () => {
+        deleteProject(projectId, accessToken)
+            .then(function (resp) {
+                if (resp["_deletedOn"]) {
+                    clearProjectData();
+                    navigate('/projects');
+                    setConfirmDelete(false);
+                }
+            })
+    }
 
+    const notConfirm = () => {
+        setConfirmDelete(false);
+    }
 
     return (
         <>
+            {confirmDelet ?
+                <>
+                    <div style={{ height: "100%", width: "100%", position: "fixed", backgroundColor: "black", opacity: "0.5", zIndex: "1" }}>
+                    </div>
+                    <div className="card-body text-center" style={{ backgroundColor: "white", position: "fixed", marginTop: "19%", height: "20%", width: "100%", zIndex: "2" }}>
+                        <h5 className="card-title">Are you sure you want to delete this project?</h5>
+                        <div style={{ display: "flex", justifyContent: "center", marginTop: "3%" }}>
+                            <div><button type="button" className="btn btn-primary" onClick={confirmDelete} style={{ float: "left" }}>Yes</button></div>
+                            <div><button type="button" className="btn btn-primary" onClick={notConfirm} style={{ float: "left" }}>No</button></div>
+                        </div>
+                    </div>
+                </>
+                :
+                null
+            }
             <div className="container my-5" style={{ paddingTop: "100px" }}>
                 <div className="row">
                     <div className="col-md-6">
@@ -86,7 +117,12 @@ export const ProjectDetails = () => {
                             <li className="list-group-item"><strong>Technology:</strong> {allTechnology && allTechnology.join(', ')}</li>
                             {webSite && <li className="list-group-item"><strong>Web site:</strong> {webSite}</li>}
                         </ul>
-                        {currUserId == _ownerId && currUserId && <button type="button" className="btn btn-primary" onClick={editProject}>Edit details</button>}
+                        {currUserId == _ownerId && currUserId &&
+                            <>
+                                <button type="button" className="btn btn-primary" onClick={editProject}>Edit details</button>
+                                <button type="button" className="btn btn-primary" onClick={deletePost}>Delete Project</button>
+                            </>
+                        }
                     </div>
                 </div>
             </div>

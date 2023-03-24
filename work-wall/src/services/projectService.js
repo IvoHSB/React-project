@@ -76,3 +76,15 @@ export const getProjectsByCategory = (category) => {
 
     return result;
 }
+
+export const deleteProject = (id, accessToken) => {
+    let result = fetch(`${url}/projects/${id}`, {
+        method: "DELETE",
+        headers: {
+            'X-Authorization': accessToken
+        }
+    })
+    .then((resp) => resp.json())
+
+    return result;
+}

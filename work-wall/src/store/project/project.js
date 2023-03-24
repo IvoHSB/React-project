@@ -6,7 +6,7 @@ export const projectData = createSlice({
         photo: null,
         title: null,
         description: null,
-        category: 'chooseOption',
+        category: 'Web-Dev',
         otherCategory: null,
         webSite: null,
         allTechnology: null,
@@ -46,6 +46,19 @@ export const projectData = createSlice({
         },
         setComments: (state, action) => {
             state.comments = action.payload;
+        },
+        clearProjectData: (state) => {
+            state._id = null;
+            state.photo = null;
+            state.title = null;
+            state.description = null;
+            state.category = null;
+            state.otherCategory = null;
+            state.webSite = null;
+            state._ownerId = null;
+            state.owner = null;
+            state.comments = [];
+            state.similarProjects = [];
         }
     }
 })
@@ -56,7 +69,8 @@ export const {
     setProjectsOnPage,
     setCurrPage,
     setSimilarProjects,
-    setComments
+    setComments,
+    clearProjectData
 } = projectData.actions;
 
 export default projectData.reducer;
