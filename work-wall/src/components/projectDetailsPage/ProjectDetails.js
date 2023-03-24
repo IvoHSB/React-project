@@ -54,7 +54,7 @@ export const ProjectDetails = () => {
                         <p>{description}</p>
                         <ul className="list-group mb-3">
                             <li className="list-group-item" onClick={visitAuthor} style={{cursor: 'pointer'}}><strong>Author:</strong> {owner}</li>
-                            <li className="list-group-item"><strong>Category:</strong> {category != 'other' ? category : otherCategory}</li>
+                            <li className="list-group-item"><strong>Category:</strong> {category != 'Other' ? category : otherCategory}</li>
                             <li className="list-group-item"><strong>Technology:</strong> {allTechnology && allTechnology.join(', ')}</li>
                             {webSite && <li className="list-group-item"><strong>Web site:</strong> {webSite}</li>}
                         </ul>

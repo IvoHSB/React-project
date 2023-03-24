@@ -70,7 +70,7 @@ export const Projects = () => {
                                         </Link>
                                         <div className="portfolio-caption">
                                             <div className="portfolio-caption-heading">{project.title}</div>
-                                            <div className="portfolio-caption-subheading text-muted">{project.category !== 'other' ? project.category : project.otherCategory}</div>
+                                            <div className="portfolio-caption-subheading text-muted">{project.category !== 'Other' ? project.category : project.otherCategory}</div>
                                         </div>
                                     </div>
                                 </div>
