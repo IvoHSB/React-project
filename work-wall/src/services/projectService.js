@@ -66,3 +66,13 @@ export const getProjectsByOwnerId = (id) => {
 
     return result;
 }
+
+export const getProjectsByCategory = (category) => {
+    let result = fetch(`${url}/projects?where=category%3D%22${category}%22`, {
+        method: "GET"
+    })
+    .then((resp) => resp.json())
+    // .then((resp) => console.log(resp))
+
+    return result;
+}

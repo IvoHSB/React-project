@@ -16,6 +16,7 @@ export const projectData = createSlice({
         pages: null,
         projectOnPage: [],
         currPage: 1,
+        similarProjects: [],
     },
     reducers: {
         setProjectData: (state, action) => {
@@ -38,10 +39,19 @@ export const projectData = createSlice({
         },
         setCurrPage: (state, action) => {
             state.currPage = action.payload;
+        },
+        setSimilarProjects: (state, action) => {
+            state.similarProjects = action.payload;
         }
     }
 })
 
-export const { setProjectData, setNumOfPages, setProjectsOnPage, setCurrPage } = projectData.actions;
+export const { 
+    setProjectData, 
+    setNumOfPages, 
+    setProjectsOnPage, 
+    setCurrPage, 
+    setSimilarProjects 
+} = projectData.actions;
 
 export default projectData.reducer;

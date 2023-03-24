@@ -45,9 +45,6 @@ export const getProfile = (id) => {
 export const getProfileByUserId = (id) => {
     let result = fetch(`${url}/userDetails?where=_ownerId%3D%22${id}%22`, {
         method: "GET",
-        headers: {
-            'Content-Type': 'application/json',
-        },
     })
     .then((resp) => resp.json())
 
