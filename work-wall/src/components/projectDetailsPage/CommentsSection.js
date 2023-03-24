@@ -15,6 +15,8 @@ export const CommentsSection = () => {
     let _ownerId = useSelector((state) => state.project._ownerId);
     let _id = useSelector((state) => state.project._id);
 
+    console.log(comments)
+
     useEffect(() => {
         getComments(_id)
             .then(function (resp) {
@@ -58,7 +60,7 @@ export const CommentsSection = () => {
                 null
             }
             <div className="row">
-                {comments.map(comment =>
+                {comments.length ? comments.map(comment =>
                     <div key={comment._id} className="col-md-4">
                         <div className="card mb-4">
                             <div className="card-body">
@@ -66,8 +68,11 @@ export const CommentsSection = () => {
                                 <p className="card-text">{comment.content}</p>
                             </div>
                         </div>
-                    </div>
-                )}
+                    </div>   
+                )
+                : 
+                <h4 className="text-center">No available comments.</h4>
+                }
             </div>
         </div>
     );
