@@ -43,7 +43,6 @@ export const profileData = createSlice({
             state.ownerId = action.payload._ownerId;
         },
         setOwnProjects(state, action) {
-          console.log(action)
           state.ownProjects = action.payload;
         },
         clearProfileDetails (state) {
