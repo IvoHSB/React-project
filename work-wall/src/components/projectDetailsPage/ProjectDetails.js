@@ -1,18 +1,23 @@
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { useNavigate, useLocation, Link } from "react-router-dom";
+import { useNavigate, useLocation, } from "react-router-dom";
 import { getProject, getProjectsByCategory } from '../../services/projectService';
 import { setProjectData, setSimilarProjects } from '../../store/project/project';
 import { getProfileByUserId } from '../../services/userService';
+import { getComments } from '../../services/commentService';
+import { setComments } from '../../store/project/project';
 
 import { SimilarProjects } from './SimilarProjects';
+import { CommentsSection } from './CommentsSection';
 
 export const ProjectDetails = () => {
     const dispatch = useDispatch();
     const location = useLocation();
     const navigate = useNavigate();
+
     let currUserId = useSelector((state) => state.user._id);
 
+    let _id = useSelector((state) => state.project._id);
 
     const projectId = location.pathname.split('/projects/').join('');
 
@@ -24,7 +29,6 @@ export const ProjectDetails = () => {
                     .then(function (respProjects) {
                         let deleteCount = 0;
                         respProjects.map(function (item) {
-                            console.log(item._id, resp._id, item._id == resp._id)
                             if (item._id == resp._id && !deleteCount) {
                                 deleteCount++;
                                 return respProjects.splice(respProjects.indexOf(item), 1);
@@ -33,6 +37,11 @@ export const ProjectDetails = () => {
                         })
                         let similarProjects = [respProjects[0], respProjects[1], respProjects[2]];
                         dispatch(setSimilarProjects(similarProjects));
+                        getComments(projectId)
+                            .then(function (resp) {
+                                dispatch(setComments(resp));
+                            }
+                            )
                     })
             });
     }, [projectId]);
@@ -44,10 +53,10 @@ export const ProjectDetails = () => {
     let otherCategory = useSelector((state) => state.project.otherCategory);
     let webSite = useSelector((state) => state.project.webSite);
     let allTechnology = useSelector((state) => state.project.allTechnology);
-    let _id = useSelector((state) => state.project._id);
     let _ownerId = useSelector((state) => state.project._ownerId);
     let owner = useSelector((state) => state.project.owner);
     let similarProjects = useSelector((state) => state.project.similarProjects);
+
 
     const visitAuthor = () => {
         getProfileByUserId(_ownerId)
@@ -57,6 +66,8 @@ export const ProjectDetails = () => {
     const editProject = () => {
         navigate(`/edit-project/${_id}`);
     }
+
+
 
 
     return (
@@ -79,38 +90,8 @@ export const ProjectDetails = () => {
                     </div>
                 </div>
             </div>
-            <div className="container my-5">
-                <h2>Comments</h2>
-                <div className="row">
-                    <div className="col-md-4">
-                        <div className="card mb-4">
-                            <div className="card-body">
-                                <h5 className="card-title">User 1</h5>
-                                <p className="card-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean at erat imperdiet, faucibus enim eget, tempor orci.</p>
-                            </div>
-                        </div>
-                    </div>
-                    <div className="col-md-4">
-                        <div className="card mb-4">
-                            <div className="card-body">
-                                <h5 className="card-title">User 2</h5>
-                                <p className="card-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean at erat imperdiet, faucibus enim eget, tempor orci.</p>
-                            </div>
-                        </div>
-                    </div>
-                    <div className="col-md-4">
-                        <div className="card mb-4">
-                            <div className="card-body">
-                                <h5 className="card-title">User 3</h5>
-                                <p className="card-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean at erat imperdiet, faucibus enim eget, tempor orci.</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            {similarProjects &&
-                <SimilarProjects />
-            }
+            <CommentsSection />
+            <SimilarProjects />
         </>
     );
 }

@@ -23,7 +23,9 @@ export const Profile = () => {
                 dispatch(setProfileData(resp))
                 getProjectsByOwnerId(resp['_ownerId'])
                     .then(function (respProjects) {
-                        dispatch(setOwnProjects(respProjects))
+                        if (!respProjects.code) {
+                            dispatch(setOwnProjects(respProjects));
+                        }
                     })
             });
     }, [])
