@@ -4,6 +4,7 @@ import { getProfileByUserId } from '../../services/userService';
 import { useDispatch, useSelector } from 'react-redux';
 import { setComments } from '../../store/project/project';
 import { useEffect } from 'react';
+import { Link } from 'react-router-dom';
 
 export const CommentsSection = () => {
     const dispatch = useDispatch();
@@ -64,7 +65,7 @@ export const CommentsSection = () => {
                     <div key={comment._id} className="col-md-4">
                         <div className="card mb-4">
                             <div className="card-body">
-                                <h5 className="card-title" style={{ cursor: 'pointer' }}>{comment.author.username}</h5>
+                                <Link style={{textDecoration: "none"}} to={`/profile/${comment.profileId}`}><h5 className="card-title" style={{ cursor: 'pointer' }}>{comment.author.username}</h5></Link>
                                 <p className="card-text">{comment.content}</p>
                             </div>
                         </div>

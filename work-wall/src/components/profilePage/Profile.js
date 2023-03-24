@@ -83,7 +83,7 @@ export const Profile = () => {
                     </div>
                 </div>
             </div>
-            {ownProjects.length ?
+            {ownProjects && ownProjects.length ?
                 <OwnProjects /> : null
             }
 
