@@ -11,6 +11,7 @@ export const OwnProjects = () => {
                     <div className="row">
                         <section className="page-section" id="portfolio">
                             <div className="container">
+                                <div className="row">
                                 {ownProjects && ownProjects.map(ownProject =>
                                     <div key={ownProject._id} className="col-lg-4 col-sm-6 mb-4">
                                         <div className="portfolio-item">
@@ -27,6 +28,7 @@ export const OwnProjects = () => {
                                         </div>
                                     </div>
                                 )}
+                                </div>
                             </div>
                         </section>
                     </div>
