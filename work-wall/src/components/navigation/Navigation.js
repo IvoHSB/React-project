@@ -15,7 +15,7 @@ export const Navigation = () => {
                 <div className="collapse navbar-collapse" id="navbarResponsive">
                     <ul className="navbar-nav text-uppercase ms-auto py-4 py-lg-0">
                         <li className="nav-item"><Link className="nav-link" to="/">Home</Link></li>
-                        <li className="nav-item"><Link className="nav-link" to="/projects">All projects</Link></li>
+                        <li className="nav-item"><Link className="nav-link" to="/projects">Projects</Link></li>
                         {_id &&
                             <li className="nav-item"><Link className="nav-link" to="/add-project">Add project</Link></li>
                         }
