@@ -5,7 +5,7 @@ export const SimilarProjects = () => {
 
     let similarProjects = useSelector((state) => state.project.similarProjects);
 
-    if (similarProjects[1]) {
+    if (similarProjects[0]) {
         return (
             <section className="page-section" id="portfolio">
                 <div className="container">

@@ -20,7 +20,7 @@ export const Navigation = () => {
                             <li className="nav-item"><Link className="nav-link" to="/add-project">Add project</Link></li>
                         }
                         <li className="nav-item"><Link className="nav-link" to="/about">About</Link></li>
-                        <li className="nav-item"><Link className="nav-link" to="/contact">Contact</Link></li>
+                        <li className="nav-item"><Link className="nav-link" to="/contact">Contact Us</Link></li>
                         {_id &&
                             <><li className="nav-item"><Link className="nav-link" to={`/profile/${_id}`}>Profile</Link></li>
                                 <li className="nav-item"><Link className="nav-link" to="/logout">logout</Link></li></>

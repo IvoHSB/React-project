@@ -23,12 +23,6 @@ export const Projects = () => {
                     dispatch(setNumOfPages(((Number(resp) - (Number(resp) % 6)) / 6) + 1));
                 }
             })
-        getProjectsPage(1)
-            .then(function (resp) {
-                if (!resp.code) {
-                    dispatch(setProjectsOnPage(resp))
-                }
-            })
         dispatch(setCurrPage(1));
     }, []);
 
