@@ -49,7 +49,7 @@ export const Projects = () => {
                 <div className="container">
                     <div className="text-center">
                         <h2 className="section-heading text-uppercase">All projects</h2>
-                        <h3 className="section-subheading text-muted">Lorem ipsum dolor sit amet consectetur.</h3>
+                        <h3 className="section-subheading text-muted">See for good Project</h3>
                     </div>
                     {projects && projects.length ?
                         <div className="row">
