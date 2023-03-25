@@ -13,9 +13,9 @@ import { Contact } from "./components/contactPage/Contact";
 import { Profile } from './components/profilePage/Profile';
 import { EditUserDetails } from './components/profilePage/EditUserDatails';
 import { NotFound } from './components/404Page/404';
-import { Register } from './components/registerPage/Register';
-import { Login } from './components/loginPage/Login';
-import { Logout } from './components/logoutPage/Logout';
+import { Register } from './components/authPages/Register';
+import { Login } from './components/authPages/Login';
+import { Logout } from './components/authPages/Logout';
 
 
 function App() {

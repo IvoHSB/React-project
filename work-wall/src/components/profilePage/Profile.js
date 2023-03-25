@@ -2,7 +2,7 @@ import { useEffect } from "react";
 import { useNavigate, useLocation } from "react-router-dom";
 import { useSelector, useDispatch } from 'react-redux';
 import { changeMethod } from "../../store/user/user";
-import { setProfileData, setOwnProjects } from "../../store/profilePage/profile";
+import { setProfileData, setOwnProjects } from "../../store/profile/profile";
 import { getProfile } from "../../services/userService";
 import { getProjectsByOwnerId } from "../../services/projectService";
 
@@ -28,7 +28,7 @@ export const Profile = () => {
                         }
                     })
             });
-    }, [])
+    }, [profileId])
 
     const username = useSelector((state) => state.profile.username);
     const email = useSelector((state) => state.profile.email);
