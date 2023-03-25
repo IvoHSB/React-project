@@ -1,67 +1,53 @@
+import GoogleMapReact from "google-map-react";
+import { useState } from "react";
+
 export const Contact = () => {
-    return(
-        <section className="page-section" style={{marginTop: '157px'}} id="contact">
-            <div className="container">
-                <div className="text-center">
-                    <h2 className="section-heading text-uppercase">Contact Us</h2>
-                    <h3 className="section-subheading text-muted">Lorem ipsum dolor sit amet consectetur.</h3>
+
+    let [location, setLocation] = useState({
+        address: '1600 Amphitheatre Parkway, Mountain View, california.',
+        lat: 43.205105,
+        lng: 27.910122,
+    })
+
+    return (
+        <div class="container my-5" style={{ paddingTop: "100px" }}>
+            <div class="row">
+                <div className="col-12" 
+                        style={{ height: "400px", marginBottom: "50px" }}
+                        >
+                    <GoogleMapReact
+                        bootstrapURLKeys={{ key: '' }}
+                        defaultCenter={location}
+                        defaultZoom={15}
+                    >
+                    </GoogleMapReact>
                 </div>
-                {/* <!-- * * * * * * * * * * * * * * *-->
-                <!-- * * SB Forms Contact Form * *-->
-                <!-- * * * * * * * * * * * * * * *-->
-                <!-- This form is pre-integrated with SB Forms.-->
-                <!-- To make this form functional, sign up at-->
-                <!-- https://startbootstrap.com/solution/contact-forms-->
-                <!-- to get an API token!--> */}
-                <form id="contactForm" data-sb-form-api-token="API_TOKEN">
-                    <div className="row align-items-stretch mb-5">
-                        <div className="col-md-6">
-                            <div className="form-group">
-                                {/* <!-- Name input--> */}
-                                <input className="form-control" id="name" type="text" placeholder="Your Name *" data-sb-validations="required" />
-                                <div className="invalid-feedback" data-sb-feedback="name:required">A name is required.</div>
-                            </div>
-                            <div className="form-group">
-                                {/* <!-- Email address input--> */}
-                                <input className="form-control" id="email" type="email" placeholder="Your Email *" data-sb-validations="required,email" />
-                                <div className="invalid-feedback" data-sb-feedback="email:required">An email is required.</div>
-                                <div className="invalid-feedback" data-sb-feedback="email:email">Email is not valid.</div>
-                            </div>
-                            <div className="form-group mb-md-0">
-                                {/* <!-- Phone number input--> */}
-                                <input className="form-control" id="phone" type="tel" placeholder="Your Phone *" data-sb-validations="required" />
-                                <div className="invalid-feedback" data-sb-feedback="phone:required">A phone number is required.</div>
-                            </div>
+                <div class="col-md-8">
+                    <h1>Contact Us</h1>
+                    <form>
+                        <div class="form-group">
+                            <label for="name">Name</label>
+                            <input type="text" class="form-control" id="name" placeholder="Enter your name" />
                         </div>
-                        <div className="col-md-6">
-                            <div className="form-group form-group-textarea mb-md-0">
-                                {/* <!-- Message input--> */}
-                                <textarea className="form-control" id="message" placeholder="Your Message *" data-sb-validations="required"></textarea>
-                                <div className="invalid-feedback" data-sb-feedback="message:required">A message is required.</div>
-                            </div>
+                        <div class="form-group">
+                            <label for="email">Email address</label>
+                            <input type="email" class="form-control" id="email" placeholder="Enter your email" />
                         </div>
-                    </div>
-                    {/* <!-- Submit success message-->
-                    <!---->
-                    <!-- This is what your users will see when the form-->
-                    <!-- has successfully submitted--> */}
-                    <div className="d-none" id="submitSuccessMessage">
-                        <div className="text-center text-white mb-3">
-                            <div className="fw-bolder">Form submission successful!</div>
-                            To activate this form, sign up at
-                            <br />
-                            <a href="https://startbootstrap.com/solution/contact-forms">https://startbootstrap.com/solution/contact-forms</a>
+                        <div class="form-group">
+                            <label for="message">Message</label>
+                            <textarea class="form-control" id="message" rows="5" placeholder="Enter your message"></textarea>
                         </div>
-                    </div>
-                    {/* <!-- Submit error message-->
-                    <!---->
-                    <!-- This is what your users will see when there is-->
-                    <!-- an error submitting the form--> */}
-                    <div className="d-none" id="submitErrorMessage"><div className="text-center text-danger mb-3">Error sending message!</div></div>
-                    {/* <!-- Submit Button--> */}
-                    <div className="text-center"><button className="btn btn-primary btn-xl text-uppercase disabled" id="submitButton" type="submit">Send Message</button></div>
-                </form>
+                        <button type="submit" class="btn btn-primary">Submit</button>
+                    </form>
+                </div>
+                <div class="col-md-4">
+                    <h2>Contact Information</h2>
+                    <p>123 Main Street</p>
+                    <p>Anytown, USA 12345</p>
+                    <p><a href="tel:123-456-7890">123-456-7890</a></p>
+                    <p><a href="mailto:info@company.com">info@company.com</a></p>
+                </div>
             </div>
-        </section>
+        </div>
     );
 }
