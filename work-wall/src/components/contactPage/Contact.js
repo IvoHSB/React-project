@@ -9,16 +9,25 @@ export const Contact = () => {
         lng: 27.910122,
     })
 
+    const renderMarkers = (map, maps) => {
+        let marker = new maps.Marker({
+            position: location,
+            map,
+            title: 'Hello World!'
+        });
+        return marker;
+    }
+
     return (
         <div class="container my-5" style={{ paddingTop: "100px" }}>
             <div class="row">
-                <div className="col-12" 
-                        style={{ height: "400px", marginBottom: "50px" }}
-                        >
+                <div className="col-12" style={{ height: "400px", marginBottom: "50px" }}>
                     <GoogleMapReact
                         bootstrapURLKeys={{ key: '' }}
                         defaultCenter={location}
-                        defaultZoom={15}
+                        defaultZoom={14}
+                        yesIWantToUseGoogleMapApiInternals
+                        onGoogleApiLoaded={({ map, maps }) => renderMarkers(map, maps)}
                     >
                     </GoogleMapReact>
                 </div>
