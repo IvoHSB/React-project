@@ -160,13 +160,13 @@ After continue redirect to profile page.
 
 ## Auth
 
-Home Page - Everyone has access.
-Projects Page - Everyone has access.
-Project Details Page - Everyone has access.
-Add and Edit Project - Only logged in users.
-About Page - Everyone has access.
-Contact Us Page - Everyone has access.
-Register Page - Only logged in users.
-Login Page - Only logged in users.
-Profile Page - Everyone has access.
+Home Page - Everyone has access.<br />
+Projects Page - Everyone has access.<br />
+Project Details Page - Everyone has access.<br />
+Add and Edit Project - Only logged in users.<br />
+About Page - Everyone has access.<br />
+Contact Us Page - Everyone has access.<br />
+Register Page - Only logged in users.<br />
+Login Page - Only logged in users.<br />
+Profile Page - Everyone has access.<br />
 Edit Profile Page - Only logged in users.
