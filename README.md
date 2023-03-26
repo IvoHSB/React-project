@@ -26,7 +26,7 @@ node surver.js
 ```bash
 cd React-project\work-wall
 
-npm run strat
+npm strat
 ```
 ## Description
 This is a site where people can register and upload their projects publicly. They can view and comment on other people's projects. They can also edit and delete their own projects.
