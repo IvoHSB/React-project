@@ -76,7 +76,7 @@ Edit details - which leads to a page with a form for editing information about t
 Delete Project - which opens a confirmation window to delete the project. If you confirm, the project will be deleted and you will be taken to the projects page. <br />
 If there are no comments, the comments section will say "No available comments."
 If you are not logged in you will only be able to read them, but if you are logged in and you are not the owner of the project you will be able to write comments, if you are the owner you will only be able to read them. <br />
-The similar projects section is only visible if there are any. Projects in the same category are considered as such.
+The similar projects section is only visible if there are any. Projects in the same category are considered as such. A maximum of 3 projects are displayed.
 <br /><br />
 
 This page has the following links:<br />
@@ -93,6 +93,63 @@ Project title - has validation for a minimum of 3 characters and is required.<br
 Project category - select which is mandatory and if you select Other, a new field "Other category" will appear.<br />
 Other category - this field is mandatory.<br />
 Description - not mandatory.<br />
+Web site - is allowed to start with "http://" or "https://" and is optional.<br />
 Select Project Technology - these are optional check buttons.<br />
 
-The edit form has filled-in fields with the project data, while the create form has completely cleared fields.
+The edit form has filled-in fields with the project data, while the create form has completely cleared fields.<br />
+After seva/post project redirect to project details page.
+
+### About Page
+
+About page is a static page without functionality.
+
+### Contact Us Page
+
+It also consists of a map with an address marker, a contact form and contact information.<br />
+<br />
+The form has fields:<br />
+Name - mandatory and with validation for a minimum number of characters (3).<br />
+Email - mandatory and with validation for correct email.<br />
+Message - mandatory with validation for a minimum number of characters (15).<br /><br />
+
+After successfully sending the message, a window will appear with a notification that it was sent successfully and after 5 seconds it will redirect you to the home page.
+
+### Register Page
+
+It contains four fields, all of which are mandatory:<br /><br />
+Username - validation for a minimum number of characters (3).<br />
+Email - Validate for correct email.<br />
+Password - validation to be the same as confirm password and minimum number of characters (9).<br />
+Confirm password - validation must be the same as the password and minimum number of characters (9).<br /><br />
+
+There is also a link to the login page. <br />
+
+After clicking Create Account with correctly filled information, it will take you to the edit profile page.
+
+### Login Page
+
+It contains two fields, all of which are mandatory:<br /><br />
+
+Email - validate for correct email.<br />
+Password - validation to be the same as confirm password and minimum number of characters (9).<br /><br />
+
+There is also a link to the register page. <br />
+
+After clicking Log in with correctly filled information, it will take you to the home page.
+
+### Profile Page
+
+Contains detailed information about the user. There is a section with his projects which is visible only if the user has projects. If you are logged in and you are the owner of the profile, you have a change info button that leads to the Edit Profile Page.
+
+### Edit Profile Page
+
+Represent a form with fields and their validations: <br /> <br />
+Photo - is allowed to start with "http://" or "https://" and is optional.<br />
+Phone number - is optional.<br />
+Web site - is allowed to start with "http://" or "https://" and is optional.<br />
+About you - not mandatory.<br />
+Select Your Skills - these are optional check buttons.<br />
+Other Skill - not mandatory.<br />
+
+The edit form has filled-in fields with the profile data, while the create form has completely cleared fields.<br />
+After continue redirect to profile page.

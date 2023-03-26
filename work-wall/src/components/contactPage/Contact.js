@@ -23,7 +23,7 @@ export const Contact = () => {
             message
         } = Object.fromEntries(new FormData(e.target));
 
-        if (name.length < 3) {
+        if (name.trim().length < 3) {
             setHaveError(true);
             setErrorMessage("Name length min 3 characters!");
         } else if (!regx.test(email)) {
@@ -83,7 +83,7 @@ export const Contact = () => {
                                 <label htmlFor="message">Message</label>
                                 <textarea className="form-control" id="message" name="message" rows="5" placeholder="Enter your message" required></textarea>
                             </div>
-                            <button type="submit" className="btn btn-primary" style={{ marginTop: "5px" }}>Submit</button>
+                            <button type="submit" className="btn btn-primary" style={{ marginTop: "5px" }}>Send</button>
                         </form>
                     </div>
                     <div className="col-md-4">

@@ -1,13 +1,23 @@
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useLocation } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import { setDetailedData } from '../../store/user/user';
 import { setDetails, editDetails } from "../../services/userService";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
 
 export const EditUserDetails = () => {
     const navigate = useNavigate();
     const dispatch = useDispatch();
+    const location = useLocation();
+    const ownerId = location.pathname.split('/edit-user-details/').join('');
+
+    const _id = useSelector((state) => state.user._id);
+    
+    useEffect(() => {
+        if (_id != ownerId) {
+            navigate('/404');
+        }
+    }, []);
 
     let [errorMessage, setErrorMessage] = useState(null);
     let [haveError, setHaveError] = useState(false);
