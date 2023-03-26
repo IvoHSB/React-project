@@ -44,10 +44,8 @@ export const Login = () => {
                         }));
                         getProfileByUserId(resp['_id'])
                             .then(function (profileResp) {
-                                console.log(profileResp[0])
                                 dispatch(setDetailedData(profileResp[0]))
                             })
-                        console.log(resp);
                         navigate('/')
                     }
                 })

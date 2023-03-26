@@ -72,7 +72,6 @@ export const getProjectsByCategory = (category) => {
         method: "GET"
     })
     .then((resp) => resp.json())
-    // .then((resp) => console.log(resp))
 
     return result;
 }

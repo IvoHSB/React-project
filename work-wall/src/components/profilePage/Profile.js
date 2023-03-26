@@ -20,6 +20,9 @@ export const Profile = () => {
     useEffect(() => {
         getProfile(profileId)
             .then(function (resp) {
+                if (resp.code) {
+                    navigate('/404');
+                }
                 dispatch(setProfileData(resp))
                 getProjectsByOwnerId(resp['_ownerId'])
                     .then(function (respProjects) {

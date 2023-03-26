@@ -12,7 +12,7 @@ export const EditUserDetails = () => {
     const ownerId = location.pathname.split('/edit-user-details/').join('');
 
     const _id = useSelector((state) => state.user._id);
-    
+
     useEffect(() => {
         if (_id != ownerId) {
             navigate('/404');
@@ -52,7 +52,6 @@ export const EditUserDetails = () => {
             setErrorMessage('Photo need strat with http:// or https:// !')
             setHaveError(true);
         } else if (!data.webSite.startsWith('http://') && !data.webSite.startsWith('https://') && data.webSite != '' ) {
-            console.log(data.webSite)
             setErrorMessage('Web site need strat with http:// or https:// !');
             setHaveError(true);
         } else {
@@ -63,14 +62,12 @@ export const EditUserDetails = () => {
             if (methodForChangeDetails === "POST") {
                 setDetails(data, accessToken)
                     .then(function (resp) {
-                        console.log(resp);
                         dispatch(setDetailedData(resp));
                         navigate(`/profile/${resp._id}`);
                     });
             } else if (methodForChangeDetails === "PUT") {
                 editDetails(data, accessToken, detailsId)
                     .then(function (resp) {
-                        console.log(resp);
                         dispatch(setDetailedData(resp));
                         navigate(`/profile/${resp._id}`);
                     });

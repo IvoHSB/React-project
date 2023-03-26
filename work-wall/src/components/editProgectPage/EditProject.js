@@ -62,7 +62,6 @@ export const EditProject = () => {
 
             editProject(data, accessToken, projectId)
                 .then(function (resp) {
-                    console.log(resp)
                     dispatch(setProjectData(resp));
                     navigate(`/projects/${resp._id}`);
                 });

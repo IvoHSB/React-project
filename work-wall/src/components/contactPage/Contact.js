@@ -27,7 +27,6 @@ export const Contact = () => {
             setHaveError(true);
             setErrorMessage("Name length min 3 characters!");
         } else if (!regx.test(email)) {
-            console.log(email)
             setHaveError(true);
             setErrorMessage("Email is not valid!");
         } else if (message.length < 15) {

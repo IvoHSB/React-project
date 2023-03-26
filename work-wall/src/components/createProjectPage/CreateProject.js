@@ -37,7 +37,6 @@ export const CreateProject = () => {
             setErrorMessage('Min project title length is 3 characters');
             setHaveError(true);
         } else if (!data.webSite.startsWith('http://') && !data.webSite.startsWith('https://') && data.webSite != '') {
-            console.log(data.webSite)
             setErrorMessage('Web site need strat with http:// or https:// !');
             setHaveError(true);
         } else {

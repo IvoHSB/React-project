@@ -153,3 +153,20 @@ Other Skill - not mandatory.<br />
 
 The edit form has filled-in fields with the profile data, while the create form has completely cleared fields.<br />
 After continue redirect to profile page.
+
+### 404 Page 
+
+404 page is a static page with one button which leads to the home page.
+
+## Auth
+
+Home Page - Everyone has access.
+Projects Page - Everyone has access.
+Project Details Page - Everyone has access.
+Add and Edit Project - Only logged in users.
+About Page - Everyone has access.
+Contact Us Page - Everyone has access.
+Register Page - Only logged in users.
+Login Page - Only logged in users.
+Profile Page - Everyone has access.
+Edit Profile Page - Only logged in users.
