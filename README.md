@@ -77,3 +77,22 @@ Delete Project - which opens a confirmation window to delete the project. If you
 If there are no comments, the comments section will say "No available comments."
 If you are not logged in you will only be able to read them, but if you are logged in and you are not the owner of the project you will be able to write comments, if you are the owner you will only be able to read them. <br />
 The similar projects section is only visible if there are any. Projects in the same category are considered as such.
+<br /><br />
+
+This page has the following links:<br />
+<br />
+Name of the project author - this leads to the profile of the project author.<br />
+Name of each comment author - this leads to the profile of the comment author.<br />
+Similar project - it leads to the details page of the project.
+
+### Add and Edit Project
+
+Represent a form with fields and their validations: <br /> <br />
+Photo - is allowed to start with "http://" or "https://" and is optional.<br />
+Project title - has validation for a minimum of 3 characters and is required.<br />
+Project category - select which is mandatory and if you select Other, a new field "Other category" will appear.<br />
+Other category - this field is mandatory.<br />
+Description - not mandatory.<br />
+Select Project Technology - these are optional check buttons.<br />
+
+The edit form has filled-in fields with the project data, while the create form has completely cleared fields.

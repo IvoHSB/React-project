@@ -31,7 +31,10 @@ export const CreateProject = () => {
         });
 
         if (!data.photo.startsWith('http://') && !data.photo.startsWith('https://') && data.photo != '') {
-            setErrorMessage('Photo need strat with http:// or https:// !')
+            setErrorMessage('Photo need strat with http:// or https:// !');
+            setHaveError(true);
+        } else if (data.title.trim().length < 3) {
+            setErrorMessage('Min project title length is 3 characters');
             setHaveError(true);
         } else if (!data.webSite.startsWith('http://') && !data.webSite.startsWith('https://') && data.webSite != '') {
             console.log(data.webSite)

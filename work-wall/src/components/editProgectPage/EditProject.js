@@ -50,8 +50,10 @@ export const EditProject = () => {
         if (!data.photo.startsWith('http://') && !data.photo.startsWith('https://') && data.photo != '') {
             setErrorMessage('Photo need strat with http:// or https:// !')
             setHaveError(true);
+        }else if (data.title.trim().length < 3) {
+            setErrorMessage('Min project title length is 3 characters');
+            setHaveError(true);
         } else if (!data.webSite.startsWith('http://') && !data.webSite.startsWith('https://') && data.webSite != '') {
-            console.log(data.webSite)
             setErrorMessage('Web site need strat with http:// or https:// !');
             setHaveError(true);
         } else {
@@ -96,7 +98,7 @@ export const EditProject = () => {
                     <form onSubmit={onSubmit}>
                         <div className="mb-3">
                             <label htmlFor="inputPhoto" className="form-label">Photo</label>
-                            <input type="text" className="form-control" id="inputPhoto" name="photo" defaultValue={photo} required />
+                            <input type="text" className="form-control" id="inputPhoto" name="photo" defaultValue={photo} />
                         </div>
                         <div className="mb-3">
                             <label htmlFor="inputProjectTitle" className="form-label">Project title</label>
@@ -125,7 +127,7 @@ export const EditProject = () => {
                         </div>
                         <div className="mb-3">
                             <label htmlFor="inputWebSite" className="form-label">Web site</label>
-                            <input type="text" className="form-control" id="inputWebSite" name="webSite" defaultValue={webSite} required />
+                            <input type="text" className="form-control" id="inputWebSite" name="webSite" defaultValue={webSite} />
                         </div>
                         <div className="mb-3">
                             <p><b>Select Project Technology</b></p>
