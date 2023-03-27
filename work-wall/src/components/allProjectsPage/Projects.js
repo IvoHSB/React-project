@@ -19,6 +19,7 @@ export const Projects = () => {
     const numOnPage = 6;
 
     useEffect(() => {
+        dispatch(setCurrPage(1));
         getProjectsNumPages()
             .then(function (resp) {
                 if (Number(resp) <= numOnPage) {
