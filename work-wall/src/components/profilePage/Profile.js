@@ -110,11 +110,7 @@ export const Profile = () => {
                                     <span className="visually-hidden">Loading...</span>
                                 </div>
                             </div> :
-                            <>
-                            {ownProjects ?
-                                <OwnProjects /> : null
-                            }
-                            </>
+                                <OwnProjects />
                         }
                     </>
                 </>

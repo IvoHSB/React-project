@@ -30,15 +30,15 @@ export const ProjectDetails = () => {
         changeIsLoadingProject(true);
         changeIsLoadingSimilarProject(true);
         changeIsLoadingComments(true);
-        
+
         getProject(projectId)
             .then(function (resp) {
                 dispatch(setProjectData(resp));
                 changeIsLoadingProject(false);
 
                 getComments(projectId)
-                    .then(function (resp) {
-                        dispatch(setComments(resp));
+                    .then(function (respComment) {
+                        dispatch(setComments(respComment));
                         changeIsLoadingComments(false);
 
                         getProjectsByCategory(resp['category'])

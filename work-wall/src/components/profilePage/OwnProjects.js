@@ -9,7 +9,7 @@ export const OwnProjects = () => {
         <section className="page-section" id="portfolio" style={{ paddingTop: "60px" }}>
             <div className="container" style={{ marginBottom: "-200px" }}>
                 <div className="row">
-                    {ownProjects.length ? ownProjects.map(ownProject =>
+                    {ownProjects && ownProjects.length ? ownProjects.map(ownProject =>
                         <div key={ownProject._id} className="col-lg-4 col-sm-6 mb-4">
                             <div className="portfolio-item">
                                 <Link className="portfolio-link" data-bs-toggle="modal" to={`/projects/${ownProject._id}`}>

@@ -19,7 +19,7 @@ export const Projects = () => {
     useEffect(() => {
         getProjectsNumPages()
             .then(function (resp) {
-                if (Number(resp) < 6) {
+                if (Number(resp) <= 6) {
                     dispatch(setNumOfPages(1));
                 } else {
                     dispatch(setNumOfPages(((Number(resp) - (Number(resp) % 6)) / 6) + 1));
