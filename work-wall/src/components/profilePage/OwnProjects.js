@@ -6,11 +6,10 @@ export const OwnProjects = () => {
     const ownProjects = useSelector((state) => state.profile.ownProjects);
 
     return (
-        <section className="page-section" id="portfolio">
-            <div className="container">
-                <h2>Projects</h2>
+        <section className="page-section" id="portfolio" style={{ paddingTop: "60px" }}>
+            <div className="container" style={{ marginBottom: "-200px" }}>
                 <div className="row">
-                    {ownProjects && ownProjects.map(ownProject =>
+                    {ownProjects.length ? ownProjects.map(ownProject =>
                         <div key={ownProject._id} className="col-lg-4 col-sm-6 mb-4">
                             <div className="portfolio-item">
                                 <Link className="portfolio-link" data-bs-toggle="modal" to={`/projects/${ownProject._id}`}>
@@ -25,7 +24,9 @@ export const OwnProjects = () => {
                                 </div>
                             </div>
                         </div>
-                    )}
+                    ) :
+                        <h4 style={{ textAlign: "center" }}>No available projects.</h4>
+                    }
                 </div>
             </div>
         </section>

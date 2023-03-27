@@ -16,6 +16,10 @@ export const ProjectDetails = () => {
     const navigate = useNavigate();
 
     let [confirmDelet, setConfirmDelete] = useState(false);
+    let [isLoadingProject, changeIsLoadingProject] = useState(false);
+    let [isLoadingSimilarProject, changeIsLoadingSimilarProject] = useState(false);
+    let [isLoadingComments, changeIsLoadingComments] = useState(false);
+
 
     let currUserId = useSelector((state) => state.user._id);
     let accessToken = useSelector((state) => state.user.accessToken);
@@ -23,27 +27,35 @@ export const ProjectDetails = () => {
     const projectId = location.pathname.split('/projects/').join('');
 
     useEffect(() => {
+        changeIsLoadingProject(true);
+        changeIsLoadingSimilarProject(true);
+        changeIsLoadingComments(true);
+        
         getProject(projectId)
             .then(function (resp) {
                 dispatch(setProjectData(resp));
-                getProjectsByCategory(resp['category'])
-                    .then(function (respProjects) {
-                        let deleteCount = 0;
-                        respProjects.map(function (item) {
-                            if (item._id == resp._id && !deleteCount) {
-                                deleteCount++;
-                                return respProjects.splice(respProjects.indexOf(item), 1);
-                            }
-                            return item
-                        })
-                        let similarProjects = [respProjects[0], respProjects[1], respProjects[2]];
-                        dispatch(setSimilarProjects(similarProjects));
-                        getComments(projectId)
-                            .then(function (resp) {
-                                dispatch(setComments(resp));
-                            }
-                            )
-                    })
+                changeIsLoadingProject(false);
+
+                getComments(projectId)
+                    .then(function (resp) {
+                        dispatch(setComments(resp));
+                        changeIsLoadingComments(false);
+
+                        getProjectsByCategory(resp['category'])
+                            .then(function (respProjects) {
+                                let deleteCount = 0;
+                                respProjects.map(function (item) {
+                                    if (item._id == resp._id && !deleteCount) {
+                                        deleteCount++;
+                                        return respProjects.splice(respProjects.indexOf(item), 1);
+                                    }
+                                    return item;
+                                })
+                                let similarProjects = [respProjects[0], respProjects[1], respProjects[2]];
+                                dispatch(setSimilarProjects(similarProjects));
+                                changeIsLoadingSimilarProject(false);
+                            });
+                    });
             });
     }, [projectId]);
 
@@ -103,31 +115,38 @@ export const ProjectDetails = () => {
                 :
                 null
             }
-            <div className="container my-5" style={{ paddingTop: "100px" }}>
-                <div className="row">
-                    <div className="col-md-6">
-                        <img src={photo} className="img-fluid rounded mb-3" alt="Project Image" />
+            {isLoadingProject ?
+                <div style={{ display: "flex", justifyContent: "center", paddingTop: "100px" }}>
+                    <div className="spinner-border" role="status">
+                        <span className="visually-hidden">Loading...</span>
                     </div>
-                    <div className="col-md-6">
-                        <h1>{title}</h1>
-                        <p>{description}</p>
-                        <ul className="list-group mb-3">
-                            <li className="list-group-item" onClick={visitAuthor} style={{ cursor: 'pointer' }}><strong style={{ color: "#ffc800" }}>Author: {owner}</strong></li>
-                            <li className="list-group-item"><strong>Category:</strong> {category != 'Other' ? category : otherCategory}</li>
-                            <li className="list-group-item"><strong>Technology:</strong> {allTechnology && allTechnology.join(', ')}</li>
-                            {webSite && <li className="list-group-item"><strong>Web site:</strong> {webSite}</li>}
-                        </ul>
-                        {currUserId == _ownerId && currUserId &&
-                            <>
-                                <button type="button" className="btn btn-primary" onClick={editProject}>Edit details</button>
-                                <button type="button" className="btn btn-primary" onClick={deletePost}>Delete Project</button>
-                            </>
-                        }
+                </div> :
+                <div className="container my-5" style={{ paddingTop: "100px" }}>
+                    <div className="row">
+                        <div className="col-md-6">
+                            <img src={photo} className="img-fluid rounded mb-3" alt="Project Image" />
+                        </div>
+                        <div className="col-md-6">
+                            <h1>{title}</h1>
+                            <p>{description}</p>
+                            <ul className="list-group mb-3">
+                                <li className="list-group-item" onClick={visitAuthor} style={{ cursor: 'pointer' }}><strong style={{ color: "#ffc800" }}>Author: {owner}</strong></li>
+                                <li className="list-group-item"><strong>Category:</strong> {category != 'Other' ? category : otherCategory}</li>
+                                <li className="list-group-item"><strong>Technology:</strong> {allTechnology && allTechnology.join(', ')}</li>
+                                {webSite && <li className="list-group-item"><strong>Web site:</strong> {webSite}</li>}
+                            </ul>
+                            {currUserId == _ownerId && currUserId &&
+                                <>
+                                    <button type="button" className="btn btn-primary" onClick={editProject}>Edit details</button>
+                                    <button type="button" className="btn btn-primary" onClick={deletePost}>Delete Project</button>
+                                </>
+                            }
+                        </div>
                     </div>
                 </div>
-            </div>
-            <CommentsSection />
-            <SimilarProjects />
+            }
+            <CommentsSection isLoading={isLoadingComments} />
+            <SimilarProjects isLoading={isLoadingSimilarProject} />
         </>
     );
 }

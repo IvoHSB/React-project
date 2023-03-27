@@ -6,7 +6,7 @@ import { setComments } from '../../store/project/project';
 import { useEffect } from 'react';
 import { Link } from 'react-router-dom';
 
-export const CommentsSection = () => {
+export const CommentsSection = ({ isLoading }) => {
     const dispatch = useDispatch();
 
     let currUserId = useSelector((state) => state.user._id);
@@ -20,29 +20,31 @@ export const CommentsSection = () => {
         getComments(_id)
             .then(function (resp) {
                 dispatch(setComments(resp));
-            }
-            )
+            })
     }, []);
 
     let [commentContent, setCommentContent] = useState()
 
     const postComment = () => {
-        let data = {
-            content: commentContent,
-            projectId: _id
+        if (commentContent) {
+            let data = {
+                content: commentContent,
+                projectId: _id
+            }
+            getProfileByUserId(currUserId)
+                .then(function (userProfile) {
+                    data.profileId = userProfile[0]['_id'];
+                    setComment(data, accessToken)
+                        .then(function () {
+                            getComments(_id)
+                                .then(function (resp) {
+                                    dispatch(setComments(resp));
+                                    setCommentContent('');
+                                })
+                        })
+                })
         }
-        getProfileByUserId(currUserId)
-            .then(function (userProfile) {
-                data.profileId = userProfile[0]['_id'];
-                setComment(data, accessToken)
-                    .then(function () {
-                        getComments(_id)
-                            .then(function (resp) {
-                                dispatch(setComments(resp));
-                                setCommentContent('');
-                            })
-                    })
-            })
+
     }
 
     return (
@@ -57,21 +59,28 @@ export const CommentsSection = () => {
                 :
                 null
             }
-            <div className="row">
-                {comments.length ? comments.map(comment =>
-                    <div key={comment._id} className="col-md-4">
-                        <div className="card mb-4">
-                            <div className="card-body">
-                                <Link style={{textDecoration: "none"}} to={`/profile/${comment.profileId}`}><h5 className="card-title" style={{ cursor: 'pointer' }}>{comment.author.username}</h5></Link>
-                                <p className="card-text">{comment.content}</p>
+            {isLoading ?
+                <div style={{ display: "flex", justifyContent: "center", paddingTop: "100px" }}>
+                    <div className="spinner-border" role="status">
+                        <span className="visually-hidden">Loading...</span>
+                    </div>
+                </div> :
+                <div className="row">
+                    {comments.length ? comments.map(comment =>
+                        <div key={comment._id} className="col-md-4">
+                            <div className="card mb-4">
+                                <div className="card-body">
+                                    <Link style={{ textDecoration: "none" }} to={`/profile/${comment.profileId}`}><h5 className="card-title" style={{ cursor: 'pointer' }}>{comment.author.username}</h5></Link>
+                                    <p className="card-text">{comment.content}</p>
+                                </div>
                             </div>
                         </div>
-                    </div>   
-                )
-                : 
-                <h4 className="text-center">No available comments.</h4>
-                }
-            </div>
+                    )
+                        :
+                        <h4 className="text-center">No available comments.</h4>
+                    }
+                </div>
+            }
         </div>
     );
 }

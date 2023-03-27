@@ -1,17 +1,22 @@
 import { Link } from "react-router-dom";
 import { useSelector } from "react-redux";;
 
-export const SimilarProjects = () => {
+export const SimilarProjects = ({ isLoading }) => {
 
     let similarProjects = useSelector((state) => state.project.similarProjects);
 
-    if (similarProjects[0]) {
-        return (
-            <section className="page-section" id="portfolio">
-                <div className="container">
-                    <h2>Similar Projects</h2>
+    return (
+        <section className="page-section" id="portfolio">
+            <div className="container">
+                <h2>Similar Projects</h2>
+                {isLoading ?
+                    <div style={{ display: "flex", justifyContent: "center", paddingTop: "100px" }}>
+                        <div className="spinner-border" role="status">
+                            <span className="visually-hidden">Loading...</span>
+                        </div>
+                    </div> :
                     <div className="row">
-                        {similarProjects && similarProjects.map(simProject =>
+                        {similarProjects[0] ? similarProjects.map(simProject =>
                             simProject ?
                                 <div key={simProject._id} className="col-lg-4 col-sm-6 mb-4">
                                     <div className="portfolio-item">
@@ -29,13 +34,12 @@ export const SimilarProjects = () => {
                                 </div>
                                 :
                                 null
-                        )}
+                        ) :
+                            <h4 style={{ textAlign: "center", marginTop: "25px" }}>No available similar projects.</h4>
+                        }
                     </div>
-                </div>
-            </section>
-        );
-    }
-
-    return null;
-
+                }
+            </div>
+        </section>
+    );
 }

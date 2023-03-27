@@ -33,6 +33,8 @@ This is a site where people can register and upload their projects publicly. The
 
 ## Functionality
 
+All pages that take data from the server have a loading indicator until they receive the data.
+
 ### Navbar and Footer
 
 #### Navbar are visible on all pages.
