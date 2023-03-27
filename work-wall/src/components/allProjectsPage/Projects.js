@@ -16,13 +16,15 @@ export const Projects = () => {
     let projects = useSelector((state) => state.project.projectOnPage);
     let userId = useSelector((state) => state.user._id);
 
+    const numOnPage = 6;
+
     useEffect(() => {
         getProjectsNumPages()
             .then(function (resp) {
-                if (Number(resp) <= 6) {
+                if (Number(resp) <= numOnPage) {
                     dispatch(setNumOfPages(1));
                 } else {
-                    dispatch(setNumOfPages(((Number(resp) - (Number(resp) % 6)) / 6) + 1));
+                    dispatch(setNumOfPages(((Number(resp) - (Number(resp) % numOnPage)) / numOnPage) + 1));
                 }
             })
         dispatch(setCurrPage(1));
