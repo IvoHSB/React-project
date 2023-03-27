@@ -175,3 +175,22 @@ Edit Profile Page - Only logged in users.
 
 ## Architecture 
 
+### Components
+
+Components are files that return pages as JSX.<br />
+
+All are separated into separate folders in the "components" folder, except for App.js, which is located in the "src" folder and is responsible for routing.<br />
+
+The style for the entire project is one common file located in the "src" folder.<br />
+
+### Services 
+
+These are files responsible for communication with the server. All queries are located there, separated into different files according to which table they refer to.
+
+### Store 
+
+Here are all the variables that are used in more than one file, separated into separate files according to what they are used for and collected in "store.js". For this I have used React Redux.
+
+### Public 
+
+In the "Public" folder are all additional scripts and images.
