@@ -58,7 +58,7 @@ export const Profile = () => {
     }
 
     return (
-        <main className="container mt-5" style={{ paddingTop: "100px", marginBottom: "20px" }}>
+        <main className="container mt-5" style={{ paddingTop: "100px", marginBottom: "100px" }}>
             {isLoadingProfile ?
                 <div style={{ display: "flex", justifyContent: "center" }}>
                     <div className="spinner-border" role="status">
