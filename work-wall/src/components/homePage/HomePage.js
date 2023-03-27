@@ -1,13 +1,13 @@
 import { Link } from "react-router-dom";
 
 import { Masthead } from "./Masthead";
-import { Benefits } from "./Benefits";
+import { Services } from "./Services";
 
 export const HomePage = () => {
     return (
         <>
             <Masthead />
-            <Benefits />
+            <Services />
             <div className="text-center">
             <Link className="btn btn-primary btn-xl text-uppercase" to="/projects">See projects</Link>
             </div>

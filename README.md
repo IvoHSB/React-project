@@ -172,3 +172,6 @@ Register Page - Only logged in users.<br />
 Login Page - Only logged in users.<br />
 Profile Page - Everyone has access.<br />
 Edit Profile Page - Only logged in users.
+
+## Architecture 
+
