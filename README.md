@@ -78,7 +78,7 @@ Edit details - which leads to a page with a form for editing information about t
 Delete Project - which opens a confirmation window to delete the project. If you confirm, the project will be deleted and you will be taken to the projects page. <br />
 If there are no comments, the comments section will say "No available comments."
 If you are not logged in you will only be able to read them, but if you are logged in and you are not the owner of the project you will be able to write comments, if you are the owner you will only be able to read them. <br />
-The similar projects section is only visible if there are any. Projects in the same category are considered as such. A maximum of 3 projects are displayed.
+If in the similar projects section don't have similar project section will say "No available similar projects". Projects in the same category are considered as such. A maximum of 3 projects are displayed.
 <br /><br />
 
 This page has the following links:<br />
@@ -141,7 +141,7 @@ After clicking Log in with correctly filled information, it will take you to the
 
 ### Profile Page
 
-Contains detailed information about the user. There is a section with his projects which is visible only if the user has projects. If you are logged in and you are the owner of the profile, you have a change info button that leads to the Edit Profile Page.
+Contains detailed information about the user. There is a section with his projects, if the user does not have a project, the inscription "No available projects" is visible. If you are logged in and you are the owner of the profile, you have a change info button that leads to the Edit Profile Page.
 
 ### Edit Profile Page
 
