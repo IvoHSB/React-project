@@ -7,7 +7,7 @@ Use [git](https://git-scm.com/downloads) to clone project.
 ```bash
 git clone https://github.com/IvoHSB/React-project.git
 
-cd React-project\work-wall
+cd work-wall
 
 npm install
 ```
@@ -17,14 +17,14 @@ npm install
 First you need run server.
 
 ```bash
-cd React-project\server
+cd server
 
 node surver.js
 ```
 Аfter you have run the server you can start the work-wall application.
 
 ```bash
-cd React-project\work-wall
+cd work-wall
 
 npm strat
 ```
